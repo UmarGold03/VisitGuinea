@@ -1,0 +1,78 @@
+.events-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .event-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    mat-card-header {
+      margin-top: 0.5rem;
+
+      mat-card-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #00796B;
+      }
+
+      mat-card-subtitle {
+        font-size: 0.95rem;
+        color: #757575;
+      }
+    }
+
+    img {
+      height: 180px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    mat-card-content {
+      font-size: 1rem;
+      color: #444;
+      margin-top: 0.5rem;
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 1rem;
+    }
+
+    button {
+      font-weight: 500;
+    }
+  }
+}

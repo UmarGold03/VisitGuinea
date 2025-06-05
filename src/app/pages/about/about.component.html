@@ -1,1 +1,29 @@
-<p>about works!</p>
+<div class="about-container mat-elevation-z2">
+  <h1 class="title">À propos de Nous</h1>
+  <p class="intro">
+    VisitGuinea est une plateforme web dédiée à la découverte et à la promotion du tourisme en Guinée.
+    Notre objectif est de faire découvrir les merveilles naturelles, culturelles et historiques de notre pays,
+    en connectant visiteurs, guides locaux, événements, et lieux incontournables.
+  </p>
+
+  <h2 class="section-title">Notre Équipe</h2>
+  <div class="team-flex">
+    <div class="member-card" *ngFor="let member of teamMembers">
+      <img [src]="'assets/img/' + member.image" [alt]="member.name" />
+      <h3>{{ member.name }}</h3>
+      <p>{{ member.role }}</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Notre Mentor</h2>
+  <div class="mentor-card">
+    <img src="assets/img/Mr.jpg" alt="Mr. Sory Millimono" />
+    <h3>Mr. Sory Millimono</h3>
+    <p>Enseignant et Consultant Technique, Mentor du projet VisitGuinea.</p>
+  </div>
+
+  <div class="nav-links">
+    <a routerLink="/guides" mat-raised-button color="primary">Voir les guides</a>
+    <a routerLink="/events" mat-raised-button color="accent">Événements à venir</a>
+  </div>
+</div>

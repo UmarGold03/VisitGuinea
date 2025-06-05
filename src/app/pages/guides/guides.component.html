@@ -1,0 +1,22 @@
+<div class="guides-container mat-elevation-z2">
+  <h1>Guides touristiques disponibles</h1>
+  <p class="description">
+    Voici les guides disponibles pour vous accompagner lors de vos visites en Guinée.
+  </p>
+
+  <div class="guides-grid">
+    <mat-card *ngFor="let guide of guides" class="guide-card">
+      <img mat-card-image [src]="guide.image" [alt]="guide.name" />
+      <mat-card-title>{{ guide.name }}</mat-card-title>
+      <mat-card-subtitle>{{ guide.region }}</mat-card-subtitle>
+      <mat-card-content>
+        <p>Langues : {{ guide.languages.join(', ') }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">
+          Contacter
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

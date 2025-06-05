@@ -1,1 +1,23 @@
-<p>site-detail works!</p>
+<div class="container" *ngIf="siteData">
+  <mat-card class="detail-card">
+    <img mat-card-image [src]="siteData.image" [alt]="siteData.name" />
+    <mat-card-title>{{ siteData.name }}</mat-card-title>
+    <mat-card-subtitle>{{ siteData.description }}</mat-card-subtitle>
+
+    <mat-card-content>
+      <p><strong>Prix :</strong> {{ siteData.price }}</p>
+      <p>
+        <strong>Localisation :</strong>
+        <a href="#" (click)="openLink(siteData.location)">Voir sur la carte</a>
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" class="btn-reserve">Réserver</button>
+      <button mat-stroked-button color="accent">Témoignages</button>
+      <button mat-stroked-button color="primary">Événements à venir</button>
+      <button mat-stroked-button color="accent" routerLink="/guides">Guides touristiques</button>
+      <button mat-stroked-button color="warn" (click)="goBack()">Retour</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

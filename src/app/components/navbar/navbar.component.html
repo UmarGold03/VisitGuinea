@@ -1,1 +1,29 @@
-<p>navbar works!</p>
+<mat-toolbar class="navbar" color="primary">
+  <a routerLink="/" class="logo">VisitGuinea</a>
+
+  <span class="spacer"></span>
+
+ 
+  <div class="center-buttons">
+    <button mat-button routerLink="/home">Accueil</button>
+    <button mat-button routerLink="/sites">Destinations</button>
+    <button mat-button routerLink="/events">Events</button>
+    <button mat-button routerLink="/about">À Propos</button>
+  </div>
+
+
+  <button mat-raised-button routerLink="/login" class="login-button">Login</button>
+
+  
+  <button mat-icon-button class="menu-button" (click)="toggleMobileMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<div *ngIf="showMobileMenu" class="mobile-menu">
+  <a mat-button routerLink="/home" (click)="closeMenu()">Accueil</a>
+  <a mat-button routerLink="/sites" (click)="closeMenu()">Destinations</a>
+  <a mat-button routerLink="/about" (click)="closeMenu()">À Propos</a>
+  <a mat-button routerLink="/login" (click)="closeMenu()">Login</a>
+</div>

@@ -1,1 +1,10 @@
-<p>sites works!</p>
+<div class="categories-container">
+  <div class="card" *ngFor="let cat of categories" (click)="goToCategory(cat.lien)">
+    <img [src]="cat.image" [alt]="cat.name" class="card-image" />
+    <div class="card-content">
+      <h2>{{ cat.name }}</h2>
+      <p>{{ cat.description }}</p>
+      <button class="btn">Explorer</button>
+    </div>
+  </div>
+</div>
