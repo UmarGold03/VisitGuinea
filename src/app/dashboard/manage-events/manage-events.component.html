@@ -1,0 +1,23 @@
+<div class="manage-events">
+  <h2>Gestion des événements</h2>
+
+  <button mat-raised-button color="primary" class="add-btn">
+    <mat-icon>add</mat-icon> Ajouter un événement
+  </button>
+
+  <div class="event-list">
+    <mat-card class="event-card" *ngFor="let event of fakeEvents">
+      <mat-card-header>
+        <mat-card-title>{{ event.title }}</mat-card-title>
+        <mat-card-subtitle>{{ event.date }} - {{ event.location }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ event.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button color="accent"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

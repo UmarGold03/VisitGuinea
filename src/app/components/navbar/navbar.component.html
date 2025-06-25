@@ -1,29 +1,61 @@
-<mat-toolbar class="navbar" color="primary">
-  <a routerLink="/" class="logo">VisitGuinea</a>
+<mat-toolbar class="navbar">
+  <!-- Logo -->
+  <a routerLink="/" class="logo" aria-label="VisitGuinea logo">
+    <img src="assets/img/png.png" alt="VisitGuinea" class="logo-img" />
+  </a>
 
   <span class="spacer"></span>
 
- 
+  <!-- Menu centre (desktop uniquement) -->
   <div class="center-buttons">
-    <button mat-button routerLink="/home">Accueil</button>
+    <button mat-button routerLink="/">Accueil</button>
     <button mat-button routerLink="/sites">Destinations</button>
-    <button mat-button routerLink="/events">Events</button>
+    <button mat-button routerLink="/events">Événements</button>
     <button mat-button routerLink="/about">À Propos</button>
+    <button mat-button routerLink="/dashboard">Tableau de Bord</button>
   </div>
 
+  <!-- Avatar utilisateur (desktop uniquement) -->
+  <ng-container *ngIf="isConnected; else notLoggedIn">
+    <div class="user-info desktop-only" [matMenuTriggerFor]="userMenu" aria-label="Menu utilisateur">
+      <img [src]="user.avatarUrl" class="avatar-img" alt="avatar" />
+    </div>
+  </ng-container>
 
-  <button mat-raised-button routerLink="/login" class="login-button">Login</button>
+  <ng-template #notLoggedIn>
+    <button mat-raised-button routerLink="/login" class="login-button desktop-only">Login</button>
+  </ng-template>
 
-  
+  <!-- Menu utilisateur dropdown -->
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item routerLink="/profil">
+      <mat-icon>person</mat-icon>
+      <span>Mon profil</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Déconnexion</span>
+    </button>
+  </mat-menu>
+
+  <!-- Bouton menu hamburger -->
   <button mat-icon-button class="menu-button" (click)="toggleMobileMenu()">
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
 
-
-<div *ngIf="showMobileMenu" class="mobile-menu">
-  <a mat-button routerLink="/home" (click)="closeMenu()">Accueil</a>
+<!-- Menu mobile déroulant -->
+<div *ngIf="showMobileMenu" @fadeInOut class="mobile-menu">
+  <a mat-button routerLink="/" (click)="closeMenu()">Accueil</a>
   <a mat-button routerLink="/sites" (click)="closeMenu()">Destinations</a>
+  <a mat-button routerLink="/events" (click)="closeMenu()">Événements</a>
   <a mat-button routerLink="/about" (click)="closeMenu()">À Propos</a>
-  <a mat-button routerLink="/login" (click)="closeMenu()">Login</a>
+
+  <ng-container *ngIf="isConnected; else loginMobile">
+    <a mat-button routerLink="/profil" (click)="closeMenu()">Mon profil</a>
+    <a mat-button (click)="logout()">Déconnexion</a>
+  </ng-container>
+  <ng-template #loginMobile>
+    <a mat-button routerLink="/login" (click)="closeMenu()">Login</a>
+  </ng-template>
 </div>

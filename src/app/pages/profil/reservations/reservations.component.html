@@ -1,0 +1,23 @@
+<div class="reservations-container">
+  <h2>Mes Réservations</h2>
+  <mat-table [dataSource]="reservations" class="mat-elevation-z2">
+
+    <ng-container matColumnDef="site">
+      <mat-header-cell *matHeaderCellDef> Site </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.site}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="prix">
+      <mat-header-cell *matHeaderCellDef> Prix </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.prix}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['site', 'date', 'prix']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['site', 'date', 'prix'];"></mat-row>
+  </mat-table>
+</div>

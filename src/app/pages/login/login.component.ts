@@ -25,4 +25,10 @@ export class LoginComponent {
     console.log('Formulaire d\'inscription soumis:', this.signupData);
    
   }
+
+  onGoogleLogin() {
+  console.log("Connexion avec Google (à implémenter)");
+}
+
+
 }

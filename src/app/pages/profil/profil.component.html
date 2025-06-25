@@ -1,0 +1,10 @@
+<nav class="profil-nav">
+  <a routerLink="infos" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Infos</a>
+  <a routerLink="reservations" routerLinkActive="active-link">Réservations</a>
+  <a routerLink="commentaires" routerLinkActive="active-link">Commentaires</a>
+  <a routerLink="edition" routerLinkActive="active-link">Édition du Profil</a>
+</nav>
+
+<div class="profil-content">
+  <router-outlet></router-outlet>
+</div>

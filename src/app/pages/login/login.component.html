@@ -19,6 +19,14 @@
             <input id="login-password" type="password" [(ngModel)]="loginData.password" name="password" required />
           </div>
           <button type="submit" class="btn">Se connecter</button>
+
+            <div class="google-btn-container">
+               <button type="button" class="btn-google" (click)="onGoogleLogin()">
+                  <img src="assets/img/search.png" alt="Google" class="google-icon" />
+                        Se connecter avec Google
+               </button>
+            </div>
+
           <p class="switch-form">Pas de compte ? <span (click)="toggleForm('signup')">S'inscrire</span></p>
         </form>
       </div>
@@ -41,6 +49,17 @@
             <input id="confirm-password" type="password" [(ngModel)]="signupData.confirmPassword" name="confirmPassword" required />
           </div>
           <button type="submit" class="btn">S'inscrire</button>
+
+
+            <div class="google-btn-container">
+               <button type="button" class="btn-google" (click)="onGoogleLogin()">
+                  <img src="assets/img/search.png" alt="Google" class="google-icon" />
+                        Se connecter avec Google
+               </button>
+            </div>
+
+
+
           <p class="switch-form">Déjà un compte ? <span (click)="toggleForm('login')">Se connecter</span></p>
         </form>
       </div>

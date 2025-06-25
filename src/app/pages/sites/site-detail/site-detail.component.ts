@@ -5,66 +5,132 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './site-detail.component.html',
   styleUrl: './site-detail.component.scss'
 })
+
+
+
 export class SiteDetailComponent implements OnInit{
 
-  categorie: string = '';
+categorie: string = '';
   site: string = '';
   siteData: any = null;
+  popularComments: any[] = [];
+
+  newComment = {
+    author: '',
+    content: ''
+  };
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   allSites: any = {
-    plage: [
+    plages: [
       {
         name: 'Capé Lagos',
         image: 'assets/img/oumar4.jpg',
         description: 'Une plage paradisiaque à Conakry.',
         price: '150,000 GNF',
-        location: 'https://maps.google.com?q=Conakry+Guinea'
+        location: 'https://maps.google.com?q=Conakry+Guinea',
+        comments: [
+          { author: 'Fatou', content: 'Très beau site, j’ai adoré ma visite !' },
+          { author: 'Moussa', content: 'Un endroit à ne pas rater en Guinée !' }
+        ]
       },
       {
         name: 'Plage de Bel-Air',
-        image: 'assets/img/oumar1.jpg',
-        description: 'Une plage paradisiaque à Conakry.',
-        price: '150,000 GNF',
-        location: 'https://maps.google.com?q=Conakry+Guinea'
+        image: 'assets/img/oumar4.jpg',
+        description: 'Plage parfaite pour les couchers de soleil.',
+        price: '120,000 GNF',
+        location: 'https://maps.google.com?q=BelAir+Guinea',
+        comments: [
+          { author: 'Alpha', content: 'J’y retourne chaque été !' }
+        ]
       }
     ],
-    montagne: [
+    monts: [
       {
         name: 'Mont Gangan',
         image: 'assets/img/mont1.jpg',
         description: 'La montagne emblématique de Kindia.',
         price: '200,000 GNF',
-        location: 'https://maps.google.com?q=Mont+Gangan+Guinea'
+        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+        ]
       }
     ],
-    hotel: [
+    hotels: [
       {
         name: 'Riviera Hotel',
-        image: 'assets/img/oumar02.jpg',
-        description: 'Hôtel de luxe en bord de mer.',
-        price: '500,000 GNF / nuit',
-        location: 'https://maps.google.com?q=Riviera+Hotel+Guinea'
-      },
-      {
-        name: 'Palm Suites',
-        image: 'assets/img/oumar01.jpg',
-        description: 'Hôtel de luxe en bord de mer.',
-        price: '500,000 GNF / nuit',
-        location: 'https://maps.google.com?q=Riviera+Hotel+Guinea'
+        image: 'assets/img/mont1.jpg',
+        description: 'La montagne emblématique de Kindia.',
+        price: '200,000 GNF',
+        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+        ]
       }
     ],
-    chutes: [
+    centres: [
       {
-        name: 'Chutes de la Soumba',
+        name: 'Prima Center',
+        image: 'assets/img/mont1.jpg',
+        description: 'La montagne emblématique de Kindia.',
+        price: '200,000 GNF',
+        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+        ]
+      }
+    ],
+    loisirs: [
+      {
+        name: 'Boîte de Nuit XYZ',
+        image: 'assets/img/mont1.jpg',
+        description: 'La montagne emblématique de Kindia.',
+        price: '200,000 GNF',
+        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+        ]
+      }
+    ],
+    religieux: [
+      {
+        name: 'Mont Gangan',
+        image: 'assets/img/mont1.jpg',
+        description: 'La montagne emblématique de Kindia.',
+        price: '200,000 GNF',
+        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+        ]
+      }
+    ],
+    iles: [
+      {
+        name: 'Iles Kassa',
+        image: 'assets/img/mont1.jpg',
+        description: 'La montagne emblématique de Kindia.',
+        price: '200,000 GNF',
+        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+        ]
+      }
+    ],
+    restaurants: [
+      {
+        name: 'Le Gourmet',
         image: 'assets/img/soumba.jpg',
         description: 'Un spectacle naturel impressionnant.',
         price: '100,000 GNF',
-        location: 'https://maps.google.com?q=Soumba+Falls+Guinea'
+        location: 'https://maps.google.com?q=Soumba+Falls+Guinea',
+        comments: [
+          { author: 'Amadou', content: 'Magnifique lieu de détente !' }
+        ]
       }
     ]
   };
-
-  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.categorie = this.route.snapshot.paramMap.get('categorie') || '';
@@ -81,13 +147,11 @@ export class SiteDetailComponent implements OnInit{
       this.router.navigate(['/categories']);
     }
 
-  }
+    // Charger les commentaires spécifiques à ce site
+    this.popularComments = this.siteData?.comments || [];
 
-  getInitials(name: string): string {
-    const parts = name.split(' ');
-    let initials = parts[0].charAt(0);
-    if (parts.length > 1) initials += parts[1].charAt(0);
-    return initials.toUpperCase();
+    // Remonter en haut de page au chargement
+    window.scrollTo(0, 0);
   }
 
   openLink(url: string) {
@@ -96,5 +160,25 @@ export class SiteDetailComponent implements OnInit{
 
   goBack() {
     this.router.navigate(['/categories']);
+  }
+
+  addComment() {
+    if (this.newComment.author.trim() && this.newComment.content.trim()) {
+      this.popularComments.unshift({
+        author: this.newComment.author,
+        content: this.newComment.content
+      });
+      this.newComment = { author: '', content: '' };
+    }
+  }
+
+  goToReservation() {
+    this.router.navigate(['/reservation'], {
+      queryParams: {
+        nom: this.siteData.name,
+        categorie: this.categorie,
+        prix: this.siteData.price
+      }
+    });
   }
 }

@@ -1,9 +1,21 @@
 import { Component } from '@angular/core';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-guides',
   templateUrl: './guides.component.html',
-  styleUrl: './guides.component.scss'
+  styleUrl: './guides.component.scss',
+   animations: [
+    trigger('fadeSlideIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('400ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'translateY(20px)' })),
+      ]),
+    ]),
+  ],
 })
 export class GuidesComponent {
 

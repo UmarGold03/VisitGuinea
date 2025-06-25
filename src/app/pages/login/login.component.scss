@@ -11,7 +11,9 @@
     position: relative;
     margin-top: 15px;
     margin-bottom: 15px;
-    background-color: skyblue;
+      background-color: rgba(0, 0, 0, 0.1);
+  /* tu peux garder la bordure et l’ombre si tu veux */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   }
   
   .form-container {
@@ -91,6 +93,39 @@
   .btn:hover {
     background-color: #0056b3;
   }
+
+
+.google-btn-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.btn-google {
+  background-color: white;
+  color: #444;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-google:hover {
+  background-color: #f0f0f0;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+
   
   .switch-form {
     text-align: center;

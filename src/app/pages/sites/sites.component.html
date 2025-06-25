@@ -1,5 +1,40 @@
+<section class="search-section container mt-4 mb-3">
+  <div class="text-center mb-3">
+    <h2>Rechercher votre Futur Destination</h2>
+    <p>Explorez les merveilles de la Guinée à votre rythme</p>
+  </div>
+
+  <div class="row justify-content-center align-items-center search-bar-row">
+    <div class="col-md-4 mb-2">
+      <div class="input-group">
+        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          placeholder="Tapez une région, un lieu, etc."
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-2">
+      <select [(ngModel)]="sortOrder" class="form-select">
+        <option value="asc">Trier : A → Z</option>
+        <option value="desc">Trier : Z → A</option>
+      </select>
+    </div>
+
+    <div class="col-md-3 mb-2">
+      <select [(ngModel)]="selectedType" class="form-select">
+        <option value="">Tous les types</option>
+        <option *ngFor="let type of uniqueTypes()" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+  </div>
+</section>
+
 <div class="categories-container">
-  <div class="card" *ngFor="let cat of categories" (click)="goToCategory(cat.lien)">
+  <div class="card" *ngFor="let cat of filteredCategories()" (click)="goToCategory(cat.lien)">
     <img [src]="cat.image" [alt]="cat.name" class="card-image" />
     <div class="card-content">
       <h2>{{ cat.name }}</h2>

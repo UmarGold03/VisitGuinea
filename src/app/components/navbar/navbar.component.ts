@@ -1,17 +1,35 @@
 import { Component, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
+   animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class NavbarComponent {
 
-  showMobileMenu = false;
+   showMobileMenu = false;
+
+  // Simule un utilisateur connecté
+  isConnected = true;
+  user = {
+    name: 'Oumar Diop',
+    avatarUrl: 'assets/img/kuser.ico', // à modifier selon ton image
+  };
 
   constructor(private router: Router) {
-    // Fermer le menu quand on change de route
     this.router.events.subscribe(() => {
       this.showMobileMenu = false;
     });
@@ -23,6 +41,12 @@ export class NavbarComponent {
 
   closeMenu() {
     this.showMobileMenu = false;
+  }
+
+  logout() {
+    this.isConnected = false;
+    this.user = { name: '', avatarUrl: '' };
+    this.router.navigate(['/login']);
   }
 
   @HostListener('window:resize', ['$event'])

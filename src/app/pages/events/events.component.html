@@ -1,21 +1,35 @@
-<div class="events-container mat-elevation-z2">
-  <h1>Événements à venir</h1>
+<div class="events-container mat-elevation-z2"  [@fadeSlideIn]>
+    <h1 class="fade-in">Evenements à venir</h1>
   <p class="intro">
     Découvrez les événements majeurs à travers la Guinée : culture, sport, nature et divertissement.
   </p>
 
   <div class="events-grid">
     <mat-card *ngFor="let event of events" class="event-card">
-      <img mat-card-image [src]="event.image" [alt]="event.title" />
+      <div class="image-wrapper">
+        <img mat-card-image [src]="event.image" [alt]="event.title" />
+        <div class="event-date">
+          <span class="day">{{ event.date | date:'dd' }}</span>
+          <span class="month">{{ event.date | date:'MMM' }}</span>
+        </div>
+      </div>
+
       <mat-card-header>
         <mat-card-title>{{ event.title }}</mat-card-title>
-        <mat-card-subtitle>{{ event.location }} • {{ event.date | date: 'longDate' }}</mat-card-subtitle>
+        <mat-card-subtitle>
+          <mat-icon>location_on</mat-icon> {{ event.location }} •
+          <mat-icon>event</mat-icon> {{ event.date | date: 'longDate' }}
+        </mat-card-subtitle>
       </mat-card-header>
+
       <mat-card-content>
         <p>{{ event.description }}</p>
       </mat-card-content>
+
       <mat-card-actions>
-        <button mat-stroked-button color="primary">En savoir plus</button>
+        <button mat-stroked-button color="primary">
+          <mat-icon>info</mat-icon> En savoir plus
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

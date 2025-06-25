@@ -1,37 +1,49 @@
 .navbar {
+   position: fixed;      /* Pour rester fixe en haut */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;       /* Pour être au-dessus du contenu */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
-  background-color: skyblue; // Bleu ciel
+  background-color: rgba(10, 25, 41, 0.6); /* Transparent avec effet */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   font-family: 'Trebuchet MS', sans-serif;
+  transition: all 0.3s ease;
 }
 
-.logo {
-  font-size: 25px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
+.logo-img {
+ height: 48px;
+  width: 48px;          /* largeur égale à la hauteur pour un cercle parfait */
+  object-fit: cover;    /* crop pour que ça remplisse bien le cercle */
+  border-radius: 50%;   /* arrondir en cercle */
+  image-rendering: -webkit-optimize-contrast;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-/* Boutons centrés */
 .center-buttons {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 10px;
 }
 
 .center-buttons button {
-  color: whitesmoke;
+  color: white;
   font-weight: bold;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-  font-family: 'Trebuchet MS', sans-serif;
   background: transparent;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .center-buttons button:hover {
@@ -39,7 +51,6 @@
   transform: scale(1.05);
 }
 
-/* Bouton Login */
 .login-button {
   color: #1976d2;
   background-color: white;
@@ -52,23 +63,43 @@
   color: white;
 }
 
-/* Hamburger */
+.user-info {
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.avatar-img {
+ width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+ 
+}
+
 .menu-button {
   display: none;
   color: white;
+  cursor: pointer;
+  font-size: 24px;
 }
 
-/* Menu mobile */
+/* Mobile menu (visible uniquement sur mobile) */
 .mobile-menu {
   display: flex;
   flex-direction: column;
   position: absolute;
   top: 64px;
   right: 0;
-  background-color: #0d1b2a ;
-  padding: 10px;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 16px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   z-index: 1000;
 }
 
@@ -84,14 +115,28 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive */
+.desktop-only {
+  display: flex;
+
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
 @media (max-width: 768px) {
-  .center-buttons,
-  .login-button {
+  .center-buttons {
     display: none;
   }
 
   .menu-button {
     display: inline-flex;
+  }
+
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .logo-img {
+    height: 40px; /* un peu plus petit sur mobile */
   }
 }

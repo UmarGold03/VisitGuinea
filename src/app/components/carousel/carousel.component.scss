@@ -1,0 +1,101 @@
+.carousel-item {
+  height: 90vh;
+  position: relative;
+
+  .carousel-image-container {
+    height: 100%;
+    position: relative;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.5s ease;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      .carousel-caption-custom {
+        color: #fff;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1.5rem;
+        border-radius: 15px;
+        max-width: 90%;
+        animation: fadeInUp 1s;
+
+        h5 {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        p {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+
+        button {
+          font-size: 1rem;
+          padding: 0.5rem 1.2rem;
+          border-radius: 8px;
+          transition: background-color 0.3s ease, transform 0.3s ease;
+          background-color: #007bff;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive ajustements */
+@media (max-width: 768px) {
+  .carousel-caption-custom {
+    padding: 1rem !important;
+
+    h5 {
+      font-size: 1.5rem !important;
+    }
+
+    p {
+      font-size: 1rem !important;
+    }
+
+    button {
+      font-size: 0.9rem !important;
+    }
+  }
+}

@@ -12,12 +12,48 @@
       </p>
     </mat-card-content>
 
-    <mat-card-actions>
-      <button mat-raised-button color="primary" class="btn-reserve">Réserver</button>
+    <mat-card-actions class="action-buttons">
+      <button mat-raised-button color="primary" (click)="goToReservation()">Réserver</button>
       <button mat-stroked-button color="accent">Témoignages</button>
-      <button mat-stroked-button color="primary">Événements à venir</button>
-      <button mat-stroked-button color="accent" routerLink="/guides">Guides touristiques</button>
+      <button mat-stroked-button color="accent">Galerie</button>
       <button mat-stroked-button color="warn" (click)="goBack()">Retour</button>
     </mat-card-actions>
+
+    <mat-divider></mat-divider>
+
+    <!-- Section avis et commentaire -->
+    <div class="avis-section">
+      <!-- Avis populaires -->
+      <div class="avis-populaires">
+        <h3>Avis populaires</h3>
+        <mat-card *ngFor="let comment of popularComments" class="avis-card">
+          <div class="avis-header">
+            <div class="avatar">{{ comment.author[0] | uppercase }}</div>
+            <div class="author">{{ comment.author }}</div>
+          </div>
+          <p class="comment-text">{{ comment.content }}</p>
+        </mat-card>
+      </div>
+
+      <!-- Laisser un commentaire -->
+      <div class="comment-form">
+        <h3>Laisser un commentaire</h3>
+        <form (ngSubmit)="addComment()" #commentForm="ngForm">
+          <mat-form-field appearance="fill" class="field">
+            <mat-label>Votre nom</mat-label>
+            <input matInput [(ngModel)]="newComment.author" name="author" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="field">
+            <mat-label>Votre commentaire</mat-label>
+            <textarea matInput rows="3" [(ngModel)]="newComment.content" name="content" required></textarea>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="!commentForm.form.valid">
+            Envoyer
+          </button>
+        </form>
+      </div>
+    </div>
   </mat-card>
 </div>

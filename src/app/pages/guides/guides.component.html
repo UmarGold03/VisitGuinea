@@ -1,10 +1,10 @@
-<div class="guides-container mat-elevation-z2">
-  <h1>Guides touristiques disponibles</h1>
-  <p class="description">
+<div class="guides-container mat-elevation-z2" [@fadeSlideIn]>
+  <h1 class="fade-in">Guides touristiques disponibles</h1>
+  <p class="description fade-in delay-1">
     Voici les guides disponibles pour vous accompagner lors de vos visites en Guinée.
   </p>
 
-  <div class="guides-grid">
+  <div class="guides-grid fade-in delay-2">
     <mat-card *ngFor="let guide of guides" class="guide-card">
       <img mat-card-image [src]="guide.image" [alt]="guide.name" />
       <mat-card-title>{{ guide.name }}</mat-card-title>

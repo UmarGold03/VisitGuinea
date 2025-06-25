@@ -1,0 +1,13 @@
+<div class="commentaires-container">
+  <h2>Mes Commentaires</h2>
+
+  <mat-card *ngFor="let commentaire of commentaires" class="comment-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>person</mat-icon>
+      <mat-card-title>{{ commentaire.auteur }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ commentaire.texte }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

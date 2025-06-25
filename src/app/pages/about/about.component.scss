@@ -1,38 +1,63 @@
 .about-container {
-  max-width: 900px;
-  margin: auto;
+ max-width: 1310px;
+  margin: 15px auto 15px;
   padding: 2rem;
-  background-color: skyblue;
+  background: rgba(255, 255, 255, 0.2); /* Changement ici */
+  backdrop-filter: blur(12px);          /* Ajouté */
+  -webkit-backdrop-filter: blur(12px);  /* Ajouté pour Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Ajouté */
   border-radius: 12px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
   text-align: center;
-   margin-top: 15px;
-    margin-bottom: 15px;
+  
+
+  // Séparation visuelle entre les sections
+  > * + * {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #b2dfdb;
+  }
 }
 
 .title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #004d40;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .intro {
-  font-size: 1.1rem;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  font-size: 1.15rem;
+  color: #37474f;
+  line-height: 1.75;
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .section-title {
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #00796B;
-  margin-bottom: 1.5rem;
-  margin-top: 3rem;
+  margin-bottom: 1.8rem;
+  position: relative;
+  text-align: left;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+  // ligne verticale décorative à gauche
+  &::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background-color: #00796B;
+    border-radius: 3px;
+  }
 }
 
 /* Flex container for team members */
@@ -40,20 +65,23 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.8rem;
-  margin-bottom: 2.5rem;
+  gap: 2rem;
 }
 
 .member-card, .mentor-card {
-  background: #f4f4f4;
-  padding: 1.2rem 1rem;
-  border-radius: 10px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9;
+  padding: 1.5rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   width: 180px;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: default;
 
-  &:hover {
-    transform: scale(1.07);
+  &:hover, &:focus {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 121, 107, 0.4);
+    background-color: #e0f2f1;
+    outline: none;
   }
 
   img {
@@ -61,19 +89,26 @@
     height: 100px;
     object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     border: 3px solid #00796B;
+    transition: border-color 0.3s ease;
+
+    // Au hover sur la card, changer la bordure image aussi
+    .member-card:hover &,
+    .mentor-card:hover & {
+      border-color: #004d40;
+    }
   }
 
   h3 {
-    font-size: 1.2rem;
-    margin: 0.3rem 0;
-    color: #2c3e50;
+    font-size: 1.3rem;
+    margin: 0.3rem 0 0.7rem 0;
+    color: #004d40;
   }
 
   p {
-    color: #666;
-    font-size: 0.95rem;
+    color: #555;
+    font-size: 1rem;
     margin: 0;
   }
 }
@@ -83,24 +118,26 @@
   width: 220px;
   margin: 0 auto 3rem;
   text-align: center;
-
-  img {
-    border-color: #004d40;
-  }
-
-  h3 {
-    margin-top: 0.7rem;
-    font-weight: 700;
-  }
 }
 
 /* Navigation buttons */
 .nav-links {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.8rem;
   margin-top: 2rem;
   flex-wrap: wrap;
+
+  a {
+    transition: box-shadow 0.25s ease, background-color 0.25s ease;
+    box-shadow: 0 3px 8px rgba(0, 121, 107, 0.25);
+
+    &:hover, &:focus {
+      box-shadow: 0 6px 14px rgba(0, 121, 107, 0.5);
+      background-color: #004d40 !important;
+      color: #fff !important;
+    }
+  }
 }
 
 /* Responsive tweaks */

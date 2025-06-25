@@ -1,0 +1,15 @@
+.reservations-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 20px;
+  }
+
+  mat-table {
+    width: 100%;
+  }
+}

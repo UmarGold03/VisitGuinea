@@ -1,0 +1,60 @@
+<div class="manage-sites">
+  <h2>Gestion des sites touristiques</h2>
+
+  <button mat-raised-button color="primary" class="add-btn" (click)="toggleForm()">
+    <mat-icon>add</mat-icon> Ajouter un site
+  </button>
+
+  <!-- FORMULAIRE D'AJOUT -->
+  <div *ngIf="showForm" @slideDown class="site-form">
+    <form (ngSubmit)="addSite()" #siteForm="ngForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom du site</mat-label>
+        <input matInput required [(ngModel)]="newSite.name" name="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput required rows="3" [(ngModel)]="newSite.description" name="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Image (URL)</mat-label>
+        <input matInput required [(ngModel)]="newSite.image" name="image" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Catégorie</mat-label>
+        <mat-select required [(ngModel)]="newSite.category" name="category">
+          <mat-option *ngFor="let c of categories" [value]="c">{{ c }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Région</mat-label>
+        <mat-select required [(ngModel)]="newSite.region" name="region">
+          <mat-option *ngFor="let r of regions" [value]="r">{{ r }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-button type="button" (click)="toggleForm()">Annuler</button>
+        <button mat-raised-button color="primary" [disabled]="siteForm.invalid">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- LISTE DES SITES -->
+  <div class="sites-list">
+    <mat-card class="site-card" *ngFor="let site of sites">
+      <img mat-card-image [src]="site.image" alt="{{ site.name }}" />
+      <mat-card-title>{{ site.name }}</mat-card-title>
+      <mat-card-subtitle>{{ site.category }} – {{ site.region }}</mat-card-subtitle>
+      <mat-card-content><p>{{ site.description }}</p></mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button color="accent"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="deleteSite(site)"><mat-icon>delete</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

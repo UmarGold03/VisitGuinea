@@ -1,0 +1,51 @@
+.profil-nav {
+  display: flex;
+  justify-content: center; // centre la nav horizontalement
+  gap: 30px; // espace entre les liens
+  padding: 12px 0;
+  border-bottom: 3px solid #1976d2; // ligne bleue en dessous
+
+  a {
+    position: relative;
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+
+    &.active-link {
+      color: #fff;
+      background-color: #1976d2;
+      box-shadow: 0 4px 10px rgba(25, 118, 210, 0.4);
+    }
+
+    &:hover:not(.active-link) {
+      background-color: #e3f2fd;
+      color: #1976d2;
+    }
+  }
+}
+
+.profil-content {
+  padding: 25px 15px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Responsive mobile */
+@media (max-width: 600px) {
+  .profil-nav {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 5px;
+  }
+
+  .profil-nav a {
+    font-size: 1rem;
+    padding: 8px 12px;
+    flex: 1 1 45%;
+    text-align: center;
+  }
+}

@@ -1,8 +1,12 @@
 <div class="container">
-  <h2 class="title">Sites dans la catégorie : {{ categorie | titlecase }}</h2>
+  <h2 class="title">{{ getCategorieTitre() }}</h2>
+
+  <div class="search-container">
+    <input type="text" placeholder="Rechercher une plage..." [(ngModel)]="searchTerm" />
+  </div>
 
   <div class="categories-container">
-    <div class="card" *ngFor="let site of sites">
+    <div class="card" *ngFor="let site of filteredSites()">
       <img [src]="site.image" [alt]="site.name" class="card-image" />
       <div class="card-content">
         <h2>{{ site.name }}</h2>
