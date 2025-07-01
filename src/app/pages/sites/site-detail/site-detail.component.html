@@ -1,5 +1,5 @@
 <div class="container" *ngIf="siteData">
-  <mat-card class="detail-card">
+  <mat-card class="detail-card animate-fade-in">
     <img mat-card-image [src]="siteData.image" [alt]="siteData.name" />
     <mat-card-title>{{ siteData.name }}</mat-card-title>
     <mat-card-subtitle>{{ siteData.description }}</mat-card-subtitle>
@@ -8,22 +8,21 @@
       <p><strong>Prix :</strong> {{ siteData.price }}</p>
       <p>
         <strong>Localisation :</strong>
-        <a href="#" (click)="openLink(siteData.location)">Voir sur la carte</a>
+        <a [href]="siteData.location" target="_blank" rel="noopener noreferrer">
+          Voir sur la carte
+        </a>
       </p>
     </mat-card-content>
 
     <mat-card-actions class="action-buttons">
-      <button mat-raised-button color="primary" (click)="goToReservation()">Réserver</button>
-      <button mat-stroked-button color="accent">Témoignages</button>
-      <button mat-stroked-button color="accent">Galerie</button>
-      <button mat-stroked-button color="warn" (click)="goBack()">Retour</button>
+      <button mat-raised-button color="primary" (click)="goToReservation()" type="button">Réserver</button>
+      <button mat-stroked-button color="warn" (click)="goBack()" type="button">Retour</button>
     </mat-card-actions>
 
     <mat-divider></mat-divider>
 
-    <!-- Section avis et commentaire -->
+    <!-- Section des avis -->
     <div class="avis-section">
-      <!-- Avis populaires -->
       <div class="avis-populaires">
         <h3>Avis populaires</h3>
         <mat-card *ngFor="let comment of popularComments" class="avis-card">
@@ -35,7 +34,6 @@
         </mat-card>
       </div>
 
-      <!-- Laisser un commentaire -->
       <div class="comment-form">
         <h3>Laisser un commentaire</h3>
         <form (ngSubmit)="addComment()" #commentForm="ngForm">
@@ -53,6 +51,21 @@
             Envoyer
           </button>
         </form>
+      </div>
+
+      <!-- Galerie intégrée -->
+      <div class="gallery-section" *ngIf="siteData?.galleryImages?.length">
+        <h3>Galerie photos</h3>
+        <div class="gallery-cards">
+          <mat-card *ngFor="let img of siteData.galleryImages" class="gallery-card">
+            <img mat-card-image [src]="img" [alt]="siteData.name" />
+            <mat-card-actions>
+              <button mat-button color="primary" (click)="downloadImage(img)" type="button">
+                Télécharger
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
       </div>
     </div>
   </mat-card>

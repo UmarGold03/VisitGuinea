@@ -3,19 +3,22 @@
   <form>
     <mat-form-field appearance="outline" class="field">
       <mat-label>Nom</mat-label>
-      <input matInput [(ngModel)]="nom" name="nom">
+      <input matInput [(ngModel)]="nom" name="nom" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="field">
       <mat-label>Email</mat-label>
-      <input matInput type="email" [(ngModel)]="email" name="email">
+      <input matInput type="email" [(ngModel)]="email" name="email" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="field">
       <mat-label>Nouveau mot de passe</mat-label>
-      <input matInput type="password" [(ngModel)]="password" name="password">
+      <input matInput type="password" [(ngModel)]="password" name="password" />
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Enregistrer</button>
+    <div class="buttons">
+      <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+      <button mat-button type="button">Annuler</button>
+    </div>
   </form>
 </div>

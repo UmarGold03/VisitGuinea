@@ -1,19 +1,31 @@
 .manage-reservations {
-  h2 { margin-bottom: 20px; color: #0a1929; }
+  h2 { 
+    margin-bottom: 24px; 
+    color: #0a1929; 
+    font-weight: 700;
+  }
 
   .reservations-list {
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 
   .reservation-card {
-    transition: transform 0.3s;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
     mat-card-actions {
       display: flex;
       justify-content: flex-end;
-      gap: 10px;
+      gap: 12px;
     }
-    &:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+
+    &:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 14px 26px rgba(0,0,0,0.15); 
+    }
   }
 }

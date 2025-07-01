@@ -1,32 +1,58 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
+interface Commentaire {
+  author: string;
+  content: string;
+}
+
+interface Site {
+  name: string;
+  image: string;
+  description: string;
+  price: string;
+  location: string;
+  comments: Commentaire[];
+  galleryImages?: string[];
+}
+
+
+
 @Component({
   selector: 'app-site-detail',
   templateUrl: './site-detail.component.html',
   styleUrl: './site-detail.component.scss'
 })
 
-
-
 export class SiteDetailComponent implements OnInit{
 
-categorie: string = '';
-  site: string = '';
-  siteData: any = null;
-  popularComments: any[] = [];
 
-  newComment = {
+  categorie: string = '';
+  site: string = '';
+  siteData: Site | null = null;
+  popularComments: Commentaire[] = [];
+
+  newComment: Commentaire = {
     author: '',
     content: ''
   };
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
-
-  allSites: any = {
+  allSites: Record<string, Site[]> = {
     plages: [
       {
-        name: 'Capé Lagos',
-        image: 'assets/img/oumar4.jpg',
+        name: 'Plage Benares',
+        image: 'assets/img/benares1.jpg',
+        description: 'Une plage paradisiaque à Conakry.',
+        price: '150,000 GNF',
+        location: 'https://maps.google.com?q=Conakry+Guinea',
+        comments: [
+          { author: 'Fatou', content: 'Très beau site, j’ai adoré ma visite !' },
+          { author: 'Moussa', content: 'Un endroit à ne pas rater en Guinée !' }
+        ]
+      },
+      {
+        name: 'Takonko Beach',
+        image: 'assets/img/Loos2.jpg',
         description: 'Une plage paradisiaque à Conakry.',
         price: '150,000 GNF',
         location: 'https://maps.google.com?q=Conakry+Guinea',
@@ -37,7 +63,17 @@ categorie: string = '';
       },
       {
         name: 'Plage de Bel-Air',
-        image: 'assets/img/oumar4.jpg',
+        image: 'assets/img/belair2.jpg',
+        description: 'Plage parfaite pour les couchers de soleil.',
+        price: '120,000 GNF',
+        location: 'https://maps.google.com?q=BelAir+Guinea',
+        comments: [
+          { author: 'Alpha', content: 'J’y retourne chaque été !' }
+        ]
+      },
+      {
+        name: 'Plage Rogbane',
+        image: 'assets/img/Eau.jpg',
         description: 'Plage parfaite pour les couchers de soleil.',
         price: '120,000 GNF',
         location: 'https://maps.google.com?q=BelAir+Guinea',
@@ -61,24 +97,84 @@ categorie: string = '';
     hotels: [
       {
         name: 'Riviera Hotel',
-        image: 'assets/img/mont1.jpg',
-        description: 'La montagne emblématique de Kindia.',
+        image: 'assets/img/Riviera1.jpg',
+        description: 'Hôtel confortable et bien situé.',
         price: '200,000 GNF',
-        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        location: 'https://maps.google.com?q=Riviera+Hotel+Guinea',
         comments: [
           { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+        ]
+      },
+      {
+        name: 'Radisson Blu',
+        image: 'assets/img/Radisson5.jpg',
+        description: 'Hôtel haut de gamme au cœur de la ville.',
+        price: '300,000 GNF',
+        location: 'https://maps.google.com?q=Radisson+Blu+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Super service et confort.' }
+        ]
+      },
+      {
+        name: 'Noom Hotel',
+        image: 'assets/img/Noom.jpg',
+        description: 'Hôtel moderne avec toutes commodités.',
+        price: '180,000 GNF',
+        location: 'https://maps.google.com?q=Noom+Hotel+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Très bon rapport qualité/prix.' }
+        ]
+      },
+      {
+        name: 'Onomo Hotel',
+        image: 'assets/img/Onomo8.jpg',
+        description: 'Hôtel apprécié des voyageurs d’affaires.',
+        price: '220,000 GNF',
+        location: 'https://maps.google.com?q=Onomo+Hotel+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Excellent emplacement.' }
+        ]
+      },
+      {
+        name: 'Palm Camayenne',
+        image: 'assets/img/PalmCam.jpg',
+        description: 'Hôtel de charme avec vue sur mer.',
+        price: '250,000 GNF',
+        location: 'https://maps.google.com?q=Palm+Camayenne+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Ambiance relaxante.' }
         ]
       }
     ],
     centres: [
       {
         name: 'Prima Center',
-        image: 'assets/img/mont1.jpg',
-        description: 'La montagne emblématique de Kindia.',
-        price: '200,000 GNF',
-        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        image: 'assets/img/Prima.jpg',
+        description: 'Centre commercial moderne à Conakry.',
+        price: 'Entrée gratuite',
+        location: 'https://maps.google.com?q=Prima+Center+Guinea',
         comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+          { author: 'Mariama', content: 'Beaucoup de boutiques intéressantes.' }
+        ]
+      },
+      {
+        name: 'Musée National',
+        image: 'assets/img/Prima.jpg',
+        description: 'Découvrez l’histoire et la culture guinéenne.',
+        price: 'Entrée gratuite',
+        location: 'https://maps.google.com?q=Musée+National+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Très enrichissant.' }
+        ]
+      },
+      {
+        name: 'Jardin 2 Octobre',
+        image: 'assets/img/Prima.jpg',
+        description: 'Un espace vert pour se détendre.',
+        price: 'Entrée gratuite',
+        location: 'https://maps.google.com?q=Jardin+2+Octobre+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Parfait pour une promenade en famille.' }
         ]
       }
     ],
@@ -86,35 +182,100 @@ categorie: string = '';
       {
         name: 'Boîte de Nuit XYZ',
         image: 'assets/img/mont1.jpg',
-        description: 'La montagne emblématique de Kindia.',
-        price: '200,000 GNF',
-        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        description: 'Ambiance festive et musique live.',
+        price: 'Prix variable',
+        location: 'https://maps.google.com?q=Boîte+de+Nuit+XYZ+Guinea',
         comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+          { author: 'Mariama', content: 'Super soirée garantie !' }
         ]
       }
     ],
     religieux: [
       {
-        name: 'Mont Gangan',
-        image: 'assets/img/mont1.jpg',
-        description: 'La montagne emblématique de Kindia.',
-        price: '200,000 GNF',
-        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        name: 'Mosquée Faycal',
+        image: 'assets/img/Faycal2.jpg',
+        description: 'Mosquée emblématique à Conakry.',
+        price: 'Entrée gratuite',
+        location: 'https://maps.google.com?q=Mosquée+Faycal+Guinea',
+        galleryImages: [
+          'assets/img/benares1.jpg',
+          'assets/img/benares1.jpg',
+          'assets/img/benares1.jpg'
+        ],
         comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+          { author: 'Mariama', content: 'Lieu de paix et de recueillement.' }
+        ]
+      },
+      {
+        name: 'Mosquée Turc',
+        image: 'assets/img/MosqueTurc.jpg',
+        description: 'Architecture impressionnante.',
+        price: 'Entrée gratuite',
+        location: 'https://maps.google.com?q=Mosquée+Turc+Guinea',
+        galleryImages: [
+          'assets/img/benares1.jpg',
+          'assets/img/benares1.jpg',
+          'assets/img/benares1.jpg'
+        ],
+        comments: [
+          { author: 'Mariama', content: 'Très bel édifice.' }
+        ]
+      },
+      {
+        name: 'Cathédrale Sainte Marie',
+        image: 'assets/img/Cathedrale1.jpg',
+        description: 'Cathédrale historique de Conakry.',
+        price: 'Entrée gratuite',
+        location: 'https://maps.google.com?q=Cathédrale+Sainte+Marie+Guinea',
+        galleryImages: [
+          'assets/img/benares1.jpg',
+          'assets/img/benares1.jpg',
+          'assets/img/benares1.jpg'
+        ],
+        comments: [
+          { author: 'Mariama', content: 'Architecture magnifique.' }
         ]
       }
     ],
     iles: [
       {
-        name: 'Iles Kassa',
-        image: 'assets/img/mont1.jpg',
-        description: 'La montagne emblématique de Kindia.',
-        price: '200,000 GNF',
-        location: 'https://maps.google.com?q=Mont+Gangan+Guinea',
+        name: 'Îles Loos',
+        image: 'assets/img/Loos2.jpg',
+        description: 'Archipel paradisiaque proche de Conakry.',
+        price: 'Visite à partir de 100,000 GNF',
+        location: 'https://maps.google.com?q=Îles+Loos+Guinea',
         comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
+          { author: 'Mariama', content: 'Un paradis pour les amoureux de la nature.' }
+        ]
+      },
+      {
+        name: 'Lac Samaya',
+        image: 'assets/img/samayalac1.jpg',
+        description: 'Lac paisible entouré de nature.',
+        price: 'Entrée gratuite',
+        location: 'https://maps.google.com?q=Lac+Samaya+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Endroit parfait pour la pêche.' }
+        ]
+      },
+      {
+        name: 'Îles Room',
+        image: 'assets/img/VU.jpg',
+        description: 'Un lieu secret pour les aventuriers.',
+        price: 'Visite privée',
+        location: 'https://maps.google.com?q=Îles+Room+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Très calme et isolé.' }
+        ]
+      },
+      {
+        name: 'Îles Tamara',
+        image: 'assets/img/tamara.jpg',
+        description: 'Île magnifique avec plages de sable blanc.',
+        price: 'Visite guidée recommandée',
+        location: 'https://maps.google.com?q=Îles+Tamara+Guinea',
+        comments: [
+          { author: 'Mariama', content: 'Superbe pour une escapade romantique.' }
         ]
       }
     ],
@@ -132,6 +293,8 @@ categorie: string = '';
     ]
   };
 
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
   ngOnInit(): void {
     this.categorie = this.route.snapshot.paramMap.get('categorie') || '';
     this.site = this.route.snapshot.paramMap.get('site') || '';
@@ -139,40 +302,44 @@ categorie: string = '';
     const categorySites = this.allSites[this.categorie];
     if (categorySites) {
       this.siteData = categorySites.find(
-        (s: any) => s.name.toLowerCase() === this.site.toLowerCase()
-      );
+        (s: Site) => s.name.toLowerCase() === this.site.toLowerCase()
+      ) || null;
     }
 
     if (!this.siteData) {
       this.router.navigate(['/categories']);
+      return;
     }
 
-    // Charger les commentaires spécifiques à ce site
-    this.popularComments = this.siteData?.comments || [];
-
-    // Remonter en haut de page au chargement
+    this.popularComments = [...(this.siteData.comments || [])];
     window.scrollTo(0, 0);
   }
 
-  openLink(url: string) {
-    window.open(url, '_blank');
+  openLink(url: string): void {
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
-  goBack() {
-    this.router.navigate(['/categories']);
+  goBack(): void {
+    this.router.navigate(['/categories', this.categorie]);
   }
 
-  addComment() {
-    if (this.newComment.author.trim() && this.newComment.content.trim()) {
+  addComment(): void {
+    const authorTrimmed = this.newComment.author.trim();
+    const contentTrimmed = this.newComment.content.trim();
+
+    if (authorTrimmed && contentTrimmed) {
       this.popularComments.unshift({
-        author: this.newComment.author,
-        content: this.newComment.content
+        author: authorTrimmed,
+        content: contentTrimmed
       });
+
       this.newComment = { author: '', content: '' };
     }
   }
 
-  goToReservation() {
+  goToReservation(): void {
+    if (!this.siteData) return;
+
     this.router.navigate(['/reservation'], {
       queryParams: {
         nom: this.siteData.name,
@@ -180,5 +347,15 @@ categorie: string = '';
         prix: this.siteData.price
       }
     });
+  }
+
+  downloadImage(imageUrl: string): void {
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = imageUrl.split('/').pop() || 'image.jpg';
+    link.rel = 'noopener';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }

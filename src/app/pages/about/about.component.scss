@@ -1,17 +1,16 @@
 .about-container {
- max-width: 1310px;
-  margin: 15px auto 15px;
+  max-width: 1310px;
+  margin: 15px auto;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.2); /* Changement ici */
-  backdrop-filter: blur(12px);          /* Ajouté */
-  -webkit-backdrop-filter: blur(12px);  /* Ajouté pour Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Ajouté */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
   text-align: center;
-  
 
-  // Séparation visuelle entre les sections
+  /* Séparation visuelle entre sections */
   > * + * {
     margin-top: 3rem;
     padding-top: 2rem;
@@ -39,7 +38,7 @@
 .section-title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #00796B;
+  color: #00796b;
   margin-bottom: 1.8rem;
   position: relative;
   text-align: left;
@@ -47,7 +46,7 @@
   margin-left: auto;
   margin-right: auto;
 
-  // ligne verticale décorative à gauche
+  /* ligne verticale décorative à gauche */
   &::before {
     content: '';
     position: absolute;
@@ -55,12 +54,11 @@
     top: 0;
     height: 100%;
     width: 5px;
-    background-color: #00796B;
+    background-color: #00796b;
     border-radius: 3px;
   }
 }
 
-/* Flex container for team members */
 .team-flex {
   display: flex;
   flex-wrap: wrap;
@@ -68,18 +66,25 @@
   gap: 2rem;
 }
 
-.member-card, .mentor-card {
+.member-card,
+.mentor-card {
   background: #f9f9f9;
   padding: 1.5rem 1.2rem;
   border-radius: 12px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   width: 180px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  cursor: default;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease;
 
-  &:hover, &:focus {
-    transform: scale(1.08);
-    box-shadow: 0 6px 18px rgba(0, 121, 107, 0.4);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.1) rotate(1deg);
+    box-shadow: 0 8px 25px rgba(0, 121, 107, 0.5);
     background-color: #e0f2f1;
     outline: none;
   }
@@ -90,14 +95,13 @@
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 1rem;
-    border: 3px solid #00796B;
-    transition: border-color 0.3s ease;
+    border: 3px solid #00796b;
+    transition: border-color 0.35s ease;
+  }
 
-    // Au hover sur la card, changer la bordure image aussi
-    .member-card:hover &,
-    .mentor-card:hover & {
-      border-color: #004d40;
-    }
+  &:hover img,
+  &:focus-visible img {
+    border-color: #004d40;
   }
 
   h3 {
@@ -113,14 +117,13 @@
   }
 }
 
-/* Mentor card centered and bigger */
+/* Mentor card slightly bigger & centered */
 .mentor-card {
   width: 220px;
   margin: 0 auto 3rem;
   text-align: center;
 }
 
-/* Navigation buttons */
 .nav-links {
   display: flex;
   justify-content: center;
@@ -132,22 +135,25 @@
     transition: box-shadow 0.25s ease, background-color 0.25s ease;
     box-shadow: 0 3px 8px rgba(0, 121, 107, 0.25);
 
-    &:hover, &:focus {
-      box-shadow: 0 6px 14px rgba(0, 121, 107, 0.5);
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0 6px 14px rgba(0, 121, 107, 0.6);
       background-color: #004d40 !important;
       color: #fff !important;
+      outline: none;
     }
   }
 }
 
-/* Responsive tweaks */
+/* Responsive */
 @media (max-width: 600px) {
   .team-flex {
     flex-direction: column;
     align-items: center;
   }
 
-  .member-card, .mentor-card {
+  .member-card,
+  .mentor-card {
     width: 90%;
   }
 }

@@ -1,29 +1,42 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+<div id="carouselExampleIndicators"
+     class="carousel slide"
+     data-bs-ride="carousel"
+     data-bs-interval="5000"
+     aria-label="Carrousel touristique"
+     role="region">
+  <!-- Indicateurs -->
   <div class="carousel-indicators">
     <button *ngFor="let slide of slides; let i = index"
             type="button"
             [class.active]="i === 0"
             data-bs-target="#carouselExampleIndicators"
-            [attr.data-bs-slide-to]="i"></button>
+            [attr.data-bs-slide-to]="i"
+            [attr.aria-label]="'Diapositive ' + (i + 1)"></button>
   </div>
 
+  <!-- Slides -->
   <div class="carousel-inner">
     <div *ngFor="let slide of slides; let i = index" class="carousel-item" [class.active]="i === 0">
       <div class="carousel-image-container">
-        <img [src]="slide.image" class="d-block w-100" alt="Slide image">
+        <img [src]="slide.image" [attr.loading]="'lazy'" class="d-block w-100" alt="Image de {{ slide.title }}">
+
         <div class="overlay">
-          <div class="carousel-caption-custom">
-            <h5>{{ slide.title }}</h5>
-            <p>{{ slide.description }}</p>
-            <button class="btn btn-primary explore-btn" [routerLink]="['/sites']">
-                {{ slide.buttonText }}
+          <div class="carousel-caption-custom animate-slide-in">
+            <h5 class="animate-title">{{ slide.title }}</h5>
+            <p class="animate-description">{{ slide.description }}</p>
+
+            <button class="btn explore-btn" [routerLink]="slide.route" [attr.aria-label]="slide.title">
+              {{ slide.buttonText }}
             </button>
+
+            <div class="slide-counter animate-counter">{{ i + 1 }} / {{ slides.length }}</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Contrôles -->
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>

@@ -1,4 +1,4 @@
-<mat-toolbar class="navbar">
+<mat-toolbar class="navbar" role="navigation">
   <!-- Logo -->
   <a routerLink="/" class="logo" aria-label="VisitGuinea logo">
     <img src="assets/img/png.png" alt="VisitGuinea" class="logo-img" />
@@ -8,54 +8,60 @@
 
   <!-- Menu centre (desktop uniquement) -->
   <div class="center-buttons">
-    <button mat-button routerLink="/">Accueil</button>
-    <button mat-button routerLink="/sites">Destinations</button>
-    <button mat-button routerLink="/events">Événements</button>
-    <button mat-button routerLink="/about">À Propos</button>
-    <button mat-button routerLink="/dashboard">Tableau de Bord</button>
+    <button mat-button routerLink="/" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{ exact: true }" aria-label="Accueil">Accueil</button>
+
+    <button mat-button routerLink="/sites" routerLinkActive="router-link-active" aria-label="Destinations">Destinations</button>
+    <button mat-button routerLink="/events" routerLinkActive="router-link-active" aria-label="Événements">Événements</button>
+    <button mat-button routerLink="/about" routerLinkActive="router-link-active" aria-label="À Propos">À Propos</button>
+    <button mat-button routerLink="/country" routerLinkActive="router-link-active" aria-label="La Guinee">La Guinée</button>
+    <button mat-button routerLink="/dashboard" routerLinkActive="router-link-active" aria-label="Tableau de Bord">Tableau de Bord</button>
   </div>
+  
 
   <!-- Avatar utilisateur (desktop uniquement) -->
   <ng-container *ngIf="isConnected; else notLoggedIn">
-    <div class="user-info desktop-only" [matMenuTriggerFor]="userMenu" aria-label="Menu utilisateur">
-      <img [src]="user.avatarUrl" class="avatar-img" alt="avatar" />
+    <div class="user-info desktop-only" [matMenuTriggerFor]="userMenu" aria-label="Menu utilisateur" tabindex="0">
+      <img [src]="user.avatarUrl" class="avatar-img" alt="avatar utilisateur" />
     </div>
   </ng-container>
 
   <ng-template #notLoggedIn>
-    <button mat-raised-button routerLink="/login" class="login-button desktop-only">Login</button>
+    <button mat-raised-button routerLink="/login" class="login-button desktop-only" aria-label="Se connecter">Login</button>
   </ng-template>
 
-  <!-- Menu utilisateur dropdown -->
-  <mat-menu #userMenu="matMenu">
-    <button mat-menu-item routerLink="/profil">
+  <!-- Menu utilisateur -->
+  <mat-menu #userMenu="matMenu" role="menu">
+    <button mat-menu-item routerLink="/profil" aria-label="Mon profil">
       <mat-icon>person</mat-icon>
       <span>Mon profil</span>
     </button>
-    <button mat-menu-item (click)="logout()">
+    <button mat-menu-item (click)="logout()" aria-label="Déconnexion">
       <mat-icon>logout</mat-icon>
       <span>Déconnexion</span>
     </button>
   </mat-menu>
 
-  <!-- Bouton menu hamburger -->
-  <button mat-icon-button class="menu-button" (click)="toggleMobileMenu()">
+  <!-- Bouton hamburger -->
+  <button mat-icon-button [class.opened]="showMobileMenu" class="menu-button" (click)="toggleMobileMenu()" aria-label="Menu principal">
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
 
-<!-- Menu mobile déroulant -->
-<div *ngIf="showMobileMenu" @fadeInOut class="mobile-menu">
-  <a mat-button routerLink="/" (click)="closeMenu()">Accueil</a>
-  <a mat-button routerLink="/sites" (click)="closeMenu()">Destinations</a>
-  <a mat-button routerLink="/events" (click)="closeMenu()">Événements</a>
-  <a mat-button routerLink="/about" (click)="closeMenu()">À Propos</a>
+<!-- Menu mobile -->
+<div *ngIf="showMobileMenu" @fadeInOut class="mobile-menu" tabindex="0">
+  <button mat-button routerLink="/" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="Accueil">Accueil</button>
+  <button mat-button routerLink="/sites" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="Destinations">Destinations</button>
+  <button mat-button routerLink="/events" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="Événements">Événements</button>
+  <button mat-button routerLink="/about" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="À Propos">À Propos</button>
+  <button mat-button routerLink="/country" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="La Guinée">La Guinée</button>
+  <button mat-button routerLink="/dashboard" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="Tableau de Bord">Tableau de Bord</button>
 
   <ng-container *ngIf="isConnected; else loginMobile">
-    <a mat-button routerLink="/profil" (click)="closeMenu()">Mon profil</a>
-    <a mat-button (click)="logout()">Déconnexion</a>
+    <button mat-button routerLink="/profil" (click)="closeMenu()" tabindex="0" aria-label="Mon profil">Mon profil</button>
+    <button mat-button (click)="logout()" tabindex="0" aria-label="Déconnexion">Déconnexion</button>
   </ng-container>
+
   <ng-template #loginMobile>
-    <a mat-button routerLink="/login" (click)="closeMenu()">Login</a>
+    <button mat-button routerLink="/login" (click)="closeMenu()" tabindex="0" aria-label="Se connecter">Login</button>
   </ng-template>
 </div>

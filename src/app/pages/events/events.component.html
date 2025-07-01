@@ -1,7 +1,7 @@
-<div class="events-container mat-elevation-z2"  [@fadeSlideIn]>
-    <h1 class="fade-in">Evenements à venir</h1>
+<div class="events-container mat-elevation-z2" [@fadeSlideIn]>
+  <h1 class="fade-in">Événements à venir</h1>
   <p class="intro">
-    Découvrez les événements majeurs à travers la Guinée : culture, sport, nature et divertissement.
+    Découvrez les événements majeurs à travers la Guinée : culture, musique, sport, nature et forums professionnels.
   </p>
 
   <div class="events-grid">
@@ -18,7 +18,7 @@
         <mat-card-title>{{ event.title }}</mat-card-title>
         <mat-card-subtitle>
           <mat-icon>location_on</mat-icon> {{ event.location }} •
-          <mat-icon>event</mat-icon> {{ event.date | date: 'longDate' }}
+          <mat-icon>event</mat-icon> {{ event.date | date:'longDate' }}
         </mat-card-subtitle>
       </mat-card-header>
 

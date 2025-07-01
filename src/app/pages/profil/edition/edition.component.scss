@@ -1,25 +1,58 @@
 .edition-container {
   max-width: 600px;
-  margin: auto;
+  margin: 30px auto;
   padding: 20px;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(25, 118, 210, 0.15);
 
   h2 {
     text-align: center;
     color: #1a237e;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+    font-weight: 700;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 
     .field {
       width: 100%;
     }
 
-    button {
-      align-self: center;
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+
+      button[type="submit"] {
+        width: 140px;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        background-color: #1976d2;
+        color: white;
+
+        &:hover {
+          background-color: #155fa0;
+        }
+      }
+
+      button[type="button"] {
+        width: 140px;
+        background-color: #ccc;
+        color: #333;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #aaa;
+        }
+      }
     }
   }
 }

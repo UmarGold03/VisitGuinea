@@ -1,29 +1,32 @@
 .manage-guides {
   h2 {
     color: #0a1929;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    font-weight: 700;
   }
 
   .add-btn {
-    margin-bottom: 20px;
-    display: flex;
+    margin-bottom: 24px;
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
   }
 
   .guide-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
   }
 
   .guide-card {
-    background: white;
-    transition: transform 0.3s;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 
     &:hover {
       transform: scale(1.02);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
     }
   }
 }

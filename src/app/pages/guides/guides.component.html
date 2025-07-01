@@ -1,19 +1,35 @@
 <div class="guides-container mat-elevation-z2" [@fadeSlideIn]>
-  <h1 class="fade-in">Guides touristiques disponibles</h1>
-  <p class="description fade-in delay-1">
+  <h1 class="fade-in" tabindex="0">Guides touristiques disponibles</h1>
+  <p class="description fade-in delay-1" tabindex="0">
     Voici les guides disponibles pour vous accompagner lors de vos visites en Guinée.
   </p>
 
   <div class="guides-grid fade-in delay-2">
-    <mat-card *ngFor="let guide of guides" class="guide-card">
-      <img mat-card-image [src]="guide.image" [alt]="guide.name" />
+    <mat-card
+      *ngFor="let guide of guides"
+      class="guide-card"
+      tabindex="0"
+      role="group"
+      [attr.aria-label]="'Guide touristique ' + guide.name + ' basé à ' + guide.region + ', parle ' + guide.languages.join(', ')"
+    >
+      <img
+        mat-card-image
+        [src]="guide.image"
+        [alt]="'Photo de ' + guide.name"
+        role="img"
+      />
       <mat-card-title>{{ guide.name }}</mat-card-title>
       <mat-card-subtitle>{{ guide.region }}</mat-card-subtitle>
       <mat-card-content>
-        <p>Langues : {{ guide.languages.join(', ') }}</p>
+        <p><strong>Langues parlées :</strong> {{ guide.languages.join(', ') }}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary">
+        <button
+          mat-raised-button
+          color="primary"
+          [attr.aria-label]="'Contacter ' + guide.name"
+          (click)="contacterGuide(guide)"
+        >
           Contacter
         </button>
       </mat-card-actions>

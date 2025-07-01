@@ -4,4 +4,8 @@ body, main, .content-wrapper {
    background: url('/assets/img/z15.jpg') no-repeat center center fixed;
   background-size: cover;
 }
+html {
+  scroll-behavior: smooth;
+}
+
 

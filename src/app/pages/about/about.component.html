@@ -1,29 +1,52 @@
-<div class="about-container mat-elevation-z2">
-  <h1 class="title">À propos de Nous</h1>
-  <p class="intro">
+<div class="about-container mat-elevation-z2" @fadeIn>
+  <h1 class="title" aria-label="Titre À propos de nous">À propos de Nous</h1>
+  <p class="intro" aria-label="Présentation de VisitGuinea">
     VisitGuinea est une plateforme web dédiée à la découverte et à la promotion du tourisme en Guinée.
     Notre objectif est de faire découvrir les merveilles naturelles, culturelles et historiques de notre pays,
     en connectant visiteurs, guides locaux, événements, et lieux incontournables.
   </p>
 
   <h2 class="section-title">Notre Équipe</h2>
-  <div class="team-flex">
-    <div class="member-card" *ngFor="let member of teamMembers">
-      <img [src]="'assets/img/' + member.image" [alt]="member.name" />
+  <div class="team-flex" role="list" aria-label="Liste des membres de l'équipe">
+    <div
+      class="member-card"
+      *ngFor="let member of teamMembers"
+      [attr.aria-label]="member.name + ' - ' + member.role"
+      tabindex="0"
+      role="listitem"
+    >
+      <img
+        [src]="'assets/img/' + member.image"
+        [alt]="'Photo de ' + member.name + ', ' + member.role"
+        role="img"
+      />
       <h3>{{ member.name }}</h3>
       <p>{{ member.role }}</p>
     </div>
   </div>
 
   <h2 class="section-title">Notre Mentor</h2>
-  <div class="mentor-card">
-    <img src="assets/img/Mr.jpg" alt="Mr. Sory Millimono" />
+  <div
+    class="mentor-card"
+    tabindex="0"
+    role="group"
+    aria-label="Mentor Mr. Sory Millimono"
+  >
+    <img
+      src="assets/img/Mr.jpg"
+      alt="Photo de Mr. Sory Millimono, Mentor du projet VisitGuinea"
+      role="img"
+    />
     <h3>Mr. Sory Millimono</h3>
     <p>Enseignant et Consultant Technique, Mentor du projet VisitGuinea.</p>
   </div>
 
   <div class="nav-links">
-    <a routerLink="/guides" mat-raised-button color="primary">Voir les guides</a>
-    <a routerLink="/events" mat-raised-button color="accent">Événements à venir</a>
+    <a routerLink="/guides" mat-raised-button color="primary" aria-label="Voir les guides">
+      Voir les guides
+    </a>
+    <a routerLink="/events" mat-raised-button color="accent" aria-label="Voir les événements à venir">
+      Événements à venir
+    </a>
   </div>
 </div>

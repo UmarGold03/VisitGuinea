@@ -2,11 +2,11 @@
   width: 220px;
   min-height: 100vh;
   position: fixed;
-  top: 64px; // adapte si tu as une navbar globale
+  top: 64px;
   left: 0;
   background-color: #0a1929;
-  color: white;
-  padding-top: 20px;
+  color: #fff;
+  padding-top: 24px;
   z-index: 999;
 
   ul {
@@ -17,9 +17,9 @@
       display: flex;
       align-items: center;
       padding: 14px 24px;
-      cursor: pointer;
       gap: 10px;
       transition: background-color 0.3s;
+      font-weight: bold;
 
       &:hover {
         background-color: rgba(255, 255, 255, 0.1);
@@ -28,9 +28,32 @@
       &.active {
         background-color: rgba(255, 255, 255, 0.2);
       }
+    }
+  }
 
-      span {
-        font-weight: bold;
+  // RESPONSIVE VERSION
+  @media (max-width: 768px) {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    top: 0;
+
+    ul {
+      display: flex;
+      overflow-x: auto;
+      justify-content: space-around;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 12px;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+
+        mat-icon {
+          font-size: 20px;
+        }
       }
     }
   }

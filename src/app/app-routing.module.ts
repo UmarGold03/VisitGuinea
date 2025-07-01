@@ -22,6 +22,9 @@ import { ManageSitesComponent } from './dashboard/manage-sites/manage-sites.comp
 import { ManageEventsComponent } from './dashboard/manage-events/manage-events.component';
 import { ManageGuidesComponent } from './dashboard/manage-guides/manage-guides.component';
 import { ManageReservationsComponent } from './dashboard/manage-reservations/manage-reservations.component';
+import { SimandouComponent } from './pages/simandou/simandou.component';
+import { CountryComponent } from './pages/country/country.component';
+import { GalleryComponent } from './pages/sites/gallery/gallery.component';
 
 const routes: Routes = [
    { path: 'navbar', component: NavbarComponent },
@@ -34,6 +37,11 @@ const routes: Routes = [
    { path: 'guides', component: GuidesComponent },
    { path: 'events', component: EventsComponent },
    { path: 'reservation', component: ReservationComponent },
+   { path: 'simandou', component: SimandouComponent },
+   { path: 'country', component: CountryComponent },
+   { path: 'categories/:categorie/:site/gallery', component: GalleryComponent },
+
+
   {
     path: 'profil',
     component: ProfilComponent,
@@ -63,13 +71,16 @@ const routes: Routes = [
   { path: 'categories', component: SitesComponent }, 
   { path: 'categories/:categorie', component: SiteCategoryListComponent }, 
   { path: 'categories/:categorie/:site', component: SiteDetailComponent },
+  
 
     { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-     scrollPositionRestoration: 'enabled'
+     scrollPositionRestoration: 'enabled',
+     anchorScrolling: 'enabled',
+  scrollOffset: [0, 80]
   }
 
   )],

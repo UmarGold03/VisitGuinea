@@ -1,27 +1,27 @@
 <div class="reservation-container" *ngIf="nomSite && prix">
   <mat-card class="reservation-card">
-    <mat-card-title>Réserver pour : {{ nomSite }}</mat-card-title>
+    <mat-card-title>Réservation pour : {{ nomSite }}</mat-card-title>
     <mat-card-subtitle>Catégorie : {{ categorie }} | Prix : {{ prix }}</mat-card-subtitle>
 
     <mat-divider></mat-divider>
 
-    <form (ngSubmit)="envoyerReservation()" #reservationForm="ngForm">
-      <mat-form-field appearance="fill" class="form-field">
+    <form (ngSubmit)="envoyerReservation()" #reservationForm="ngForm" class="form">
+      <mat-form-field appearance="outline" class="form-field">
         <mat-label>Nom complet</mat-label>
         <input matInput [(ngModel)]="reservationData.nom" name="nom" required />
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="form-field">
+      <mat-form-field appearance="outline" class="form-field">
         <mat-label>Email</mat-label>
         <input matInput type="email" [(ngModel)]="reservationData.email" name="email" required />
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="form-field">
+      <mat-form-field appearance="outline" class="form-field">
         <mat-label>Téléphone</mat-label>
         <input matInput type="tel" [(ngModel)]="reservationData.telephone" name="telephone" required />
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="form-field">
+      <mat-form-field appearance="outline" class="form-field">
         <mat-label>Date de visite</mat-label>
         <input matInput [matDatepicker]="picker" [(ngModel)]="reservationData.date" name="date" required />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

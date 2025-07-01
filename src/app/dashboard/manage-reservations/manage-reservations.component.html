@@ -1,15 +1,15 @@
 <div class="manage-reservations">
   <h2>Gestion des réservations</h2>
   <div class="reservations-list">
-    <mat-card class="reservation-card" *ngFor="let r of reservations">
+    <mat-card class="reservation-card" *ngFor="let r of reservations" @fadeIn>
       <mat-card-title>Réservation de {{ r.user }}</mat-card-title>
       <mat-card-subtitle>{{ r.site }} – {{ r.date }}</mat-card-subtitle>
       <mat-card-content>
         <p>{{ r.notes }}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-icon-button color="primary"><mat-icon>visibility</mat-icon></button>
-        <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button color="primary" aria-label="Voir"><mat-icon>visibility</mat-icon></button>
+        <button mat-icon-button color="warn" aria-label="Supprimer"><mat-icon>delete</mat-icon></button>
       </mat-card-actions>
     </mat-card>
   </div>

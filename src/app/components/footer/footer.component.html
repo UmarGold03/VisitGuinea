@@ -1,52 +1,69 @@
-<footer class="footer">
+<footer class="footer" role="contentinfo" aria-label="Pied de page VisitGuinea">
   <div class="footer-container">
 
-    
-    <div class="footer-logo">
-      <h2>VisitGuinea</h2>
+    <!-- Logo + Description -->
+    <div class="footer-column footer-logo">
+      <img src="assets/img/gng.png" alt="Logo VisitGuinea" class="logo-circle" />
       <p>Explorez la beauté de la Guinée avec nos destinations exceptionnelles et nos guides locaux.</p>
     </div>
 
-    <div class="footer-links">
+    <!-- Liens rapides -->
+    <nav class="footer-column" aria-label="Liens rapides">
       <h3>Liens rapides</h3>
       <ul>
-        <li><a routerLink="/">Accueil</a></li>
-        <li><a routerLink="/sites">Destinations</a></li>
-        <li><a routerLink="/about">À propos</a></li>
-        <li><a routerLink="/events">Événements</a></li>
-        <li><a routerLink="/guides">Guides</a></li>
+        <li><a routerLink="/" tabindex="0">Accueil</a></li>
+        <li><a routerLink="/sites" tabindex="0">Destinations</a></li>
+        <li><a routerLink="/events" tabindex="0">Événements</a></li>
+        <li><a routerLink="/about" tabindex="0">À propos</a></li>
+        <li><a routerLink="/guides" tabindex="0">Guides</a></li>
       </ul>
-    </div>
+    </nav>
 
-    <div class="footer-contact">
+    <!-- Contact -->
+    <address class="footer-column" aria-label="Informations de contact">
       <h3>Contact</h3>
-      <p>Email : <a href="mailto:info@visitguinea.com">infovisitguinea.com</a></p>
-      <p>Téléphone : <a href="tel:+22460000000">+224 600 00 00 00</a></p>
+      <p>Email : <a href="mailto:info@visitguinea.com" tabindex="0">infovisitguinea.com</a></p>
+      <p>Tél : <a href="tel:+22460000000" tabindex="0">+224 600 00 00 00</a></p>
 
-    
-      <div class="footer-right">
-       
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
+      <!-- Réseaux sociaux -->
+      <div class="social-icons" aria-label="Réseaux sociaux">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook" rel="noopener" tabindex="0">
+          <img src="assets/icons/facebook.svg" alt="Facebook" />
         </a>
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram" rel="noopener" tabindex="0">
+          <img src="assets/icons/instagram.svg" alt="Instagram" />
         </a>
-        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-          <i class="fab fa-twitter"></i>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" rel="noopener" tabindex="0">
+          <img src="assets/icons/linkedin.svg" alt="LinkedIn" />
         </a>
-        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        
       </div>
+    </address>
 
-    </div>
-
+    <!-- Newsletter -->
+    <section class="footer-column newsletter" aria-labelledby="newsletterTitle">
+      <h3 id="newsletterTitle">Newsletter</h3>
+      <p>Recevez nos dernières offres et destinations par e-mail :</p>
+      <form aria-describedby="newsletterDesc" aria-live="polite" novalidate>
+        <input
+          type="email"
+          placeholder="Votre adresse email"
+          aria-label="Adresse email"
+          required
+          pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+        />
+        <button type="submit" aria-label="S'abonner à la newsletter">S'abonner</button>
+        <div class="form-message" role="alert" aria-live="assertive"></div>
+      </form>
+    </section>
 
   </div>
 
+  <!-- Bas de page -->
   <div class="footer-bottom">
-    © 2025 VisitGuinea. Tous droits réservés.
+    <p>© 2025 VisitGuinea. Tous droits réservés.</p>
+    <nav class="legal-links" aria-label="Liens légaux">
+      <a routerLink="/mentions-legales" tabindex="0">Mentions légales</a>
+      <a routerLink="/confidentialite" tabindex="0">Confidentialité</a>
+    </nav>
   </div>
 </footer>

@@ -10,26 +10,33 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   animation: fadeInContainer 1s ease-in-out both;
 
+  h1,
+  .description {
+    user-select: none;
+  }
+
   h1 {
     text-align: center;
-    color: #004d40;
+    color: #00796b;
     margin-bottom: 1rem;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
   }
 
   .description {
     text-align: center;
     color: #333;
     margin-bottom: 2rem;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
+    font-weight: 500;
   }
 
   .guides-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2rem;
+    gap: 2.4rem;
   }
 
   .guide-card {
@@ -39,13 +46,19 @@
     background: rgba(255, 255, 255, 0.25);
     border-radius: 15px;
     backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 18px rgba(0, 121, 107, 0.15);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 
-    &:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 10px 20px rgba(0, 77, 64, 0.4);
+    cursor: pointer;
+    outline-offset: 4px;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 14px 28px rgba(0, 121, 107, 0.45);
+      border-color: #004d40;
+      background: rgba(224, 242, 241, 0.9);
     }
 
     img {
@@ -53,38 +66,55 @@
       object-fit: cover;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
+      user-select: none;
+      transition: border-color 0.3s ease;
+      border: 3px solid transparent;
+    }
+
+    &:hover img,
+    &:focus-visible img {
+      border-color: #004d40;
     }
 
     mat-card-title {
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin: 0.5rem 0;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0.75rem 0 0.3rem;
       color: #004d40;
+      user-select: none;
     }
 
     mat-card-subtitle {
       color: #555;
       font-size: 1rem;
+      user-select: none;
     }
 
     mat-card-content p {
-      font-size: 0.95rem;
-      color: #333;
-      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #2c3e50;
+      margin-top: 0.7rem;
+      font-weight: 500;
     }
 
     mat-card-actions {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       display: flex;
       justify-content: center;
-    }
 
-    button {
-      transition: all 0.3s ease;
-      &:hover {
-        transform: scale(1.05);
-        background-color: #004d40;
-        color: #fff;
+      button {
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 6px rgba(0, 121, 107, 0.3);
+
+        &:hover,
+        &:focus-visible {
+          transform: scale(1.08);
+          background-color: #004d40;
+          color: #fff;
+          box-shadow: 0 4px 12px rgba(0, 77, 64, 0.7);
+          outline: none;
+        }
       }
     }
   }

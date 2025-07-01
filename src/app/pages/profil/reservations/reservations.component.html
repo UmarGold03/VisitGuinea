@@ -17,7 +17,7 @@
       <mat-cell *matCellDef="let element"> {{element.prix}} </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="['site', 'date', 'prix']"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: ['site', 'date', 'prix'];"></mat-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>

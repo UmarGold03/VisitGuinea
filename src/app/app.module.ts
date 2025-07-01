@@ -60,6 +60,8 @@ import { ManageSitesComponent } from './dashboard/manage-sites/manage-sites.comp
 import { ManageEventsComponent } from './dashboard/manage-events/manage-events.component';
 import { ManageGuidesComponent } from './dashboard/manage-guides/manage-guides.component';
 import { ManageReservationsComponent } from './dashboard/manage-reservations/manage-reservations.component';
+import { SimandouComponent } from './pages/simandou/simandou.component';
+import { GalleryComponent } from './pages/sites/gallery/gallery.component';
 
 
 
@@ -93,6 +95,8 @@ import { ManageReservationsComponent } from './dashboard/manage-reservations/man
     ManageEventsComponent,
     ManageGuidesComponent,
     ManageReservationsComponent,
+    SimandouComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,

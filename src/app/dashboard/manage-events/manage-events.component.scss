@@ -1,29 +1,33 @@
 .manage-events {
   h2 {
     color: #0a1929;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    font-weight: 700;
   }
 
   .add-btn {
-    margin-bottom: 20px;
-    display: flex;
+    margin-bottom: 24px;
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
   }
 
   .event-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
   }
 
   .event-card {
     background: #fff;
-    transition: transform 0.3s;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 
     &:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transform: scale(1.03);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
   }
 }
+

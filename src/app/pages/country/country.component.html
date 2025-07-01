@@ -1,1 +1,101 @@
-<p>country works!</p>
+<div class="country-container" [@fadeIn]>
+  <h1 class="title">Guinée - Pays de Richesses</h1>
+  <p class="intro">
+    Découvrez la Guinée, ses symboles, ses régions naturelles, ses dirigeants et plus encore.
+  </p>
+
+  <!-- Drapeau -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-card-title>Drapeau</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="assets/img/drapp.png" alt="Drapeau de la Guinée" />
+  </mat-card>
+
+  <!-- Devise -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-card-title>Devise</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Devise officielle :</strong> Franc guinéen (GNF)</p>
+      <p><strong>Symbole :</strong> GNF</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Hymne -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-card-title>Hymne National</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><em>« Liberté »</em> est l'hymne national de la Guinée.</p>
+      <audio controls>
+        <source src="assets/audio/hymne-guinee.mp3" type="audio/mpeg" />
+        Votre navigateur ne supporte pas l'audio.
+      </audio>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Régions -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-card-title>Régions Naturelles</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="regions-list">
+        <div class="region" *ngFor="let region of regions">
+          <h3>{{ region.nom }}</h3>
+          <p>{{ region.description }}</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Présidents -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-card-title>Présidents</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="presidents-list">
+        <mat-card *ngFor="let president of presidents" class="president-card" [@fadeSlideIn]>
+          <img mat-card-image [src]="president.photo" [alt]="president.nom" />
+          <mat-card-content>
+            <h4>{{ president.nom }}</h4>
+            <p><strong>Mandat :</strong> {{ president.mandat }}</p>
+            <p>{{ president.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Infos clés -->
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-card-title>Informations Clés</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ul class="infos-list">
+        <li *ngFor="let info of infos">
+          <mat-icon>info</mat-icon>
+          {{ info }}
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Carte de la Guinée -->
+<mat-card class="section-card">
+  <mat-card-header>
+    <mat-card-title>Carte de la Guinée</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="map-wrapper">
+      <img src="assets/img/Carte.png" alt="Carte de la Guinée" />
+    </div>
+  </mat-card-content>
+</mat-card>
+
+</div>

@@ -1,0 +1,128 @@
+.simandou-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.simandou-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 30px;
+  transition: all 0.4s ease;
+
+  .text-block {
+    flex: 1;
+    min-width: 280px;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: #004d40;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+  }
+
+  .img-block {
+    flex: 1;
+    min-width: 280px;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      transition: transform 0.4s ease;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.video-section {
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.call-to-action {
+  text-align: center;
+  background-color: #0a1929;
+  color: white;
+  padding: 40px;
+  border-radius: 10px;
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background: #ffd700;
+    color: #0a1929;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: white;
+      color: #0a1929;
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .simandou-section {
+    flex-direction: column !important;
+    text-align: center;
+
+    .img-block,
+    .text-block {
+      width: 100%;
+    }
+  }
+}

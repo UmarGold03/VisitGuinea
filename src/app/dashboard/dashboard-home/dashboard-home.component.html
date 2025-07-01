@@ -1,21 +1,9 @@
 <div class="dashboard-home">
   <h2>Tableau de bord VisitGuinea</h2>
   <div class="stats-grid">
-    <div class="card stat">
-      <mat-icon>map</mat-icon>
-      <p>12 Sites</p>
-    </div>
-    <div class="card stat">
-      <mat-icon>event</mat-icon>
-      <p>5 Événements</p>
-    </div>
-    <div class="card stat">
-      <mat-icon>group</mat-icon>
-      <p>8 Guides</p>
-    </div>
-    <div class="card stat">
-      <mat-icon>comment</mat-icon>
-      <p>23 Commentaires</p>
+    <div class="card stat" @fadeIn *ngFor="let stat of stats">
+      <mat-icon>{{ stat.icon }}</mat-icon>
+      <p>{{ stat.label }}</p>
     </div>
   </div>
 </div>

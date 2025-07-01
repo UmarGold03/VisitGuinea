@@ -1,7 +1,7 @@
 <div class="commentaires-container">
   <h2>Mes Commentaires</h2>
 
-  <mat-card *ngFor="let commentaire of commentaires" class="comment-card">
+  <mat-card *ngFor="let commentaire of commentaires" class="comment-card" @fadeIn>
     <mat-card-header>
       <mat-icon mat-card-avatar>person</mat-icon>
       <mat-card-title>{{ commentaire.auteur }}</mat-card-title>

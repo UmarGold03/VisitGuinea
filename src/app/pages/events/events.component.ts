@@ -19,49 +19,48 @@ import { trigger, style, animate, transition } from '@angular/animations';
 })
 export class EventsComponent {
 
-  events = [
+    events = [
+    {
+      title: 'Fête du 2 Octobre – Fête Nationale',
+      date: new Date('2025-10-02'),
+      location: 'Conakry',
+      image: 'assets/img/fete.jpg',
+      description: 'Célébration de l’indépendance avec concerts, défilés et spectacles partout en Guinée.'
+    },
     {
       title: 'Festival des Arts de Conakry',
-      date: '2025-08-10',
+      date: new Date('2025-08-10'),
       location: 'Conakry',
       image: 'assets/img/n1.jpg',
       description: 'Un festival culturel qui célèbre les arts traditionnels et modernes guinéens.'
     },
     {
-      title: 'Randonnée au Mont Gangan',
-      date: '2025-09-05',
-      location: 'Kindia',
-      image: 'assets/img/n1.jpg',
-      description: 'Une excursion guidée vers l’un des plus beaux sommets de Guinée.'
+      title: 'Match Amical Guinée vs Sénégal',
+      date: new Date('2025-09-15'),
+      location: 'Stade Général Lansana Conté',
+      image: 'assets/img/foot.jpg',
+      description: 'Un événement sportif passionnant entre deux grandes équipes africaines.'
     },
     {
-      title: 'Randonnée au Mont Gangan',
-      date: '2025-09-05',
+      title: 'Forum du Tourisme Durable',
+      date: new Date('2025-11-20'),
       location: 'Kindia',
-      image: 'assets/img/n1.jpg',
-      description: 'Une excursion guidée vers l’un des plus beaux sommets de Guinée.'
+      image: 'assets/img/forum.jpg',
+      description: 'Échanges et solutions pour un tourisme plus écoresponsable et local.'
     },
     {
-      title: 'Randonnée au Mont Gangan',
-      date: '2025-09-05',
-      location: 'Kindia',
-      image: 'assets/img/n1.jpg',
-      description: 'Une excursion guidée vers l’un des plus beaux sommets de Guinée.'
-    },
-    {
-      title: 'Randonnée au Mont Gangan',
-      date: '2025-09-05',
-      location: 'Kindia',
-      image: 'assets/img/n1.jpg',
-      description: 'Une excursion guidée vers l’un des plus beaux sommets de Guinée.'
+      title: 'Concert de Takana Zion',
+      date: new Date('2025-08-20'),
+      location: 'Conakry – Stade du 28 septembre',
+      image: 'assets/img/concert.jpg',
+      description: 'Grand concert reggae de l’un des artistes les plus populaires de Guinée.'
     },
     {
       title: 'Salon du Tourisme de Guinée',
-      date: '2025-07-15',
+      date: new Date('2025-07-15'),
       location: 'Labé',
-      image: 'assets/img/n1.jpg',
-      description: 'Une rencontre entre acteurs du tourisme et les visiteurs pour découvrir les offres touristiques.'
+      image: 'assets/img/forum.jpg',
+      description: 'Rencontre entre les acteurs du tourisme et les visiteurs pour découvrir les offres touristiques.'
     }
   ];
-  
 }

@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+interface Category {
+  name: string;
+  image: string;
+  description: string;
+  lien: string;
+  type: string;
+}
+
 @Component({
   selector: 'app-sites',
   templateUrl: './sites.component.html',
@@ -8,11 +16,11 @@ import { Router } from '@angular/router';
 })
 export class SitesComponent {
 
-searchQuery: string = '';
-  sortOrder: string = 'asc';
-  selectedType: string = '';
+  searchQuery = '';
+  sortOrder: 'asc' | 'desc' = 'asc';
+  selectedType = '';
 
- categories = [
+  categories: Category[] = [
     {
       name: 'Plages',
       image: 'assets/img/benares1.jpg',
@@ -71,7 +79,6 @@ searchQuery: string = '';
     }
   ];
 
-
   constructor(private router: Router) {}
 
   goToCategory(category: string) {
@@ -82,17 +89,15 @@ searchQuery: string = '';
     return [...new Set(this.categories.map(c => c.type))];
   }
 
-  filteredCategories() {
-    let query = this.searchQuery.toLowerCase();
-
-    let filtered = this.categories.filter(cat =>
+  filteredCategories(): Category[] {
+    const query = this.searchQuery.toLowerCase();
+    let result = this.categories.filter(cat =>
       (cat.name.toLowerCase().includes(query) || cat.description.toLowerCase().includes(query)) &&
       (this.selectedType === '' || cat.type === this.selectedType)
     );
 
     return this.sortOrder === 'asc'
-      ? filtered.sort((a, b) => a.name.localeCompare(b.name))
-      : filtered.sort((a, b) => b.name.localeCompare(a.name));
+      ? result.sort((a, b) => a.name.localeCompare(b.name))
+      : result.sort((a, b) => b.name.localeCompare(a.name));
   }
-
 }

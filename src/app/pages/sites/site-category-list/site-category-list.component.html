@@ -1,22 +1,41 @@
 <div class="container">
-  <h2 class="title">{{ getCategorieTitre() }}</h2>
 
-  <div class="search-container">
-    <input type="text" placeholder="Rechercher une plage..." [(ngModel)]="searchTerm" />
-  </div>
+  <!-- Header immersif avec titre, description, recherche -->
+  <section class="header-banner">
+    <div class="overlay">
+      <h2>{{ getCategorieTitre() }}</h2>
+      <p>Explorez les sites disponibles dans cette catégorie</p>
+      <input
+        type="text"
+        placeholder="Rechercher un site..."
+        [(ngModel)]="searchTerm"
+      />
+    </div>
+  </section>
 
+  <!-- Grille de cartes -->
   <div class="categories-container">
-    <div class="card" *ngFor="let site of filteredSites()">
-      <img [src]="site.image" [alt]="site.name" class="card-image" />
+    <div
+      class="card"
+      *ngFor="let site of filteredSites()"
+      (click)="goToDetails(site)"
+      role="button"
+      [attr.aria-label]="'Explorer ' + site.name"
+    >
+      <img [src]="site.image" [alt]="site.name" class="card-image" loading="lazy" />
       <div class="card-content">
-        <h2>{{ site.name }}</h2>
+        <h3>{{ site.name }}</h3>
         <p>{{ site.description }}</p>
-        <button class="btn" (click)="goToDetails(site)">Explorer</button>
+        <button class="btn-explore" (click)="$event.stopPropagation(); goToDetails(site)">
+          Explorer
+        </button>
       </div>
     </div>
   </div>
 
+  <!-- Bouton retour -->
   <div class="back-btn">
-    <button class="btn-retour" (click)="goBack()">Retour</button>
+    <button class="btn-retour" (click)="goBack()">← Retour</button>
   </div>
+
 </div>

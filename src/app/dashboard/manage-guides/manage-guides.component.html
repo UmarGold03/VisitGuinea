@@ -6,15 +6,15 @@
   </button>
 
   <div class="guide-list">
-    <mat-card class="guide-card" *ngFor="let guide of fakeGuides">
+    <mat-card class="guide-card" *ngFor="let guide of fakeGuides" @fadeIn>
       <mat-card-title>{{ guide.name }}</mat-card-title>
       <mat-card-subtitle>{{ guide.region }}</mat-card-subtitle>
       <mat-card-content>
         <p>{{ guide.bio }}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-icon-button color="accent"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button color="accent" aria-label="Modifier"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" aria-label="Supprimer"><mat-icon>delete</mat-icon></button>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -1,9 +1,10 @@
 .profil-nav {
   display: flex;
-  justify-content: center; // centre la nav horizontalement
-  gap: 30px; // espace entre les liens
+  justify-content: center;
+  gap: 30px;
   padding: 12px 0;
-  border-bottom: 3px solid #1976d2; // ligne bleue en dessous
+  border-bottom: 3px solid #1976d2;
+  background: #f7f9fc;
 
   a {
     position: relative;
@@ -13,12 +14,24 @@
     font-size: 1.1rem;
     padding: 10px 15px;
     border-radius: 6px;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 
     &.active-link {
       color: #fff;
       background-color: #1976d2;
       box-shadow: 0 4px 10px rgba(25, 118, 210, 0.4);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: #1976d2;
+        border-radius: 3px;
+        animation: slideIn 0.3s ease forwards;
+      }
     }
 
     &:hover:not(.active-link) {
@@ -28,13 +41,17 @@
   }
 }
 
+@keyframes slideIn {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
 .profil-content {
   padding: 25px 15px;
   max-width: 900px;
   margin: 0 auto;
 }
 
-/* Responsive mobile */
 @media (max-width: 600px) {
   .profil-nav {
     flex-wrap: wrap;

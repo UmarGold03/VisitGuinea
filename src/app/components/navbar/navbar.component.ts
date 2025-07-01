@@ -20,13 +20,12 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class NavbarComponent {
 
-   showMobileMenu = false;
-
-  // Simule un utilisateur connecté
+  showMobileMenu = false;
   isConnected = true;
+
   user = {
     name: 'Oumar Diop',
-    avatarUrl: 'assets/img/kuser.ico', // à modifier selon ton image
+    avatarUrl: 'assets/img/Avat.png', // Lien vers une image PNG claire
   };
 
   constructor(private router: Router) {
@@ -49,7 +48,7 @@ export class NavbarComponent {
     this.router.navigate(['/login']);
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onResize() {
     if (window.innerWidth > 768) {
       this.showMobileMenu = false;

@@ -1,6 +1,6 @@
-<nav class="dashboard-navbar">
+<nav class="dashboard-navbar" role="navigation" aria-label="Dashboard menu">
   <ul>
-    <li routerLink="/dashboard/home" routerLinkActive="active">
+    <li routerLink="/dashboard/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
       <mat-icon>dashboard</mat-icon>
       <span>Accueil</span>
     </li>
