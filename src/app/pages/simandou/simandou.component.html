@@ -3,6 +3,8 @@
     *ngFor="let section of sections; let i = index"
     class="simandou-section"
     [ngClass]="{ 'reverse': i % 2 === 1 }"
+    aos
+    data-aos="fade-up"
   >
     <div class="text-block">
       <h2>{{ section.title }}</h2>
@@ -14,17 +16,17 @@
   </section>
 
   <!-- Vidéo -->
-  <section class="video-section">
+  <section class="video-section" aos data-aos="zoom-in-up">
     <h2>Présentation vidéo du projet</h2>
     <div class="video-wrapper">
-      <iframe [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
+      <iframe [src]="videoUrl" frameborder="0" allowfullscreen title="Vidéo de présentation Simandou"></iframe>
     </div>
   </section>
 
   <!-- Call to action -->
-  <section class="call-to-action">
+  <section class="call-to-action" aos data-aos="fade-in">
     <h2>En savoir plus</h2>
     <p>Le projet Simandou n’est pas seulement un projet minier, c’est un avenir pour la Guinée.</p>
-    <button routerLink="/contact">Nous contacter</button>
+    <button routerLink="/contact" title="Contactez-nous pour plus d’informations">Nous contacter</button>
   </section>
 </div>

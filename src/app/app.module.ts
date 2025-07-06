@@ -20,6 +20,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -62,6 +63,7 @@ import { ManageGuidesComponent } from './dashboard/manage-guides/manage-guides.c
 import { ManageReservationsComponent } from './dashboard/manage-reservations/manage-reservations.component';
 import { SimandouComponent } from './pages/simandou/simandou.component';
 import { GalleryComponent } from './pages/sites/gallery/gallery.component';
+import { MerciComponent } from './merci/merci.component';
 
 
 
@@ -97,13 +99,14 @@ import { GalleryComponent } from './pages/sites/gallery/gallery.component';
     ManageReservationsComponent,
     SimandouComponent,
     GalleryComponent,
+    MerciComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatButtonModule, MatToolbarModule, 
     MatLabel, FormsModule, MatSelectModule, MatTableModule,
-     MatInputModule, MatGridListModule, MatTabsModule,
+     MatInputModule, MatGridListModule, MatTabsModule, MatSnackBarModule,
     MatIconModule, MatMenuModule,
      MatSlideToggleModule, MatCardModule,
       MatFormFieldModule, MatListModule ,MatSidenavModule, 

@@ -1,5 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
+
+interface Reservation {
+  nom: string;
+  email: string;
+  telephone: string;
+  date: string;
+  site: string;
+  categorie: string;
+  prix: string;
+}
+
 
 @Component({
   selector: 'app-reservation',
@@ -20,7 +32,14 @@ export class ReservationComponent implements OnInit {
     date: ''
   };
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  // Simulation de base de données temporaire
+  reservations: Reservation[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.nomSite = this.route.snapshot.queryParamMap.get('nom') || '';
@@ -30,10 +49,34 @@ export class ReservationComponent implements OnInit {
   }
 
   envoyerReservation() {
-    if (this.reservationData.nom && this.reservationData.email && this.reservationData.telephone && this.reservationData.date) {
-      alert(`Réservation envoyée pour ${this.nomSite} !`);
+    if (
+      this.reservationData.nom &&
+      this.reservationData.email &&
+      this.reservationData.telephone &&
+      this.reservationData.date
+    ) {
+      const nouvelleReservation: Reservation = {
+        ...this.reservationData,
+        site: this.nomSite,
+        categorie: this.categorie,
+        prix: this.prix
+      };
+
+      // Simule l'enregistrement
+      this.reservations.push(nouvelleReservation);
+
+      // Snackbar de confirmation
+      this.snackBar.open(
+        `Réservation confirmée pour ${this.nomSite}`,
+        'OK',
+        { duration: 4000 }
+      );
+
+      // Reset
       this.reservationData = { nom: '', email: '', telephone: '', date: '' };
-      this.router.navigate(['/home']);
+
+      // Redirection
+      setTimeout(() => this.router.navigate(['/merci']), 1000);
     }
   }
 }

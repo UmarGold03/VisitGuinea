@@ -32,10 +32,10 @@ export class SiteCategoryListComponent implements OnInit{
       { name: 'Palm Camayenne', image: 'assets/img/PalmCama.jpg', description: 'Hébergement moderne à Conakry.' }
     ],
     monts: [
-      { name: 'Mont Loura', image: 'assets/img/z3.jpg', description: 'Montagne emblématique de Kindia.' },
-      { name: 'Chutes Killisi', image: 'assets/img/kilissi.jpg', description: 'Cascade superbe de Kindia.' },
-      { name: 'Voile de la Mariée', image: 'assets/img/voile3.jpg', description: 'Cascade spectaculaire.' },
-      { name: 'Chutes de la Soumba', image: 'assets/img/soumba.jpg', description: 'Cascade au cœur de la forêt.' }
+      { name: 'Mont Loura', image: 'assets/img/louraa.jpg', description: 'Vue panoramique sur le Fouta et sa célèbre "Dame de pierre", idéal pour la randonnée.' },
+      { name: 'Chutes Killisi', image: 'assets/img/kilissi.jpg', description: 'Cascade pittoresque à Kindia, parfaite pour se détendre en pleine nature.' },
+      { name: 'Voile de la Mariée', image: 'assets/img/voile3.jpg', description: 'Lieu rafraîchissant à Dubréka, très prisé pour les sorties en famille.' },
+      { name: 'Chutes de la Soumba', image: 'assets/img/soumba.jpg', description: 'Belle cascade formant un voile naturel, spot calme et accessible près de Dubréka.' }
     ],
     centres: [
       { name: 'Prima Center', image: 'assets/img/Prima.jpg', description: 'Centre moderne de loisirs.' },
@@ -54,11 +54,22 @@ export class SiteCategoryListComponent implements OnInit{
       { name: 'Cathédrale Sainte Marie', image: 'assets/img/CathedraleSainteMarie.jpg', description: 'Patrimoine religieux.' }
     ],
     loisirs: [
-      { name: 'Boîte XYZ', image: 'assets/img/mont1.jpg', description: 'Endroit branché pour danser.' },
-      { name: 'Espace détente', image: 'assets/img/mont1.jpg', description: 'Lieu convivial et festif.' }
+      { name: 'Saint Georges', image: 'assets/img/Saint Georges1.jpg', description: 'Ambiance chic et exclusive, parfait pour des soirées entre amis..' },
+      { name: 'Apollon', image: 'assets/img/Appolon.jpg', description: 'Soirées dansantes avec DJ locaux et jeux de lumière immersifs.' },
+      { name: 'Yoma Night Club', image: 'assets/img/Yoma Night.jpg', description: 'Club emblématique de Conakry avec musique live et public festif..' },
+      { name: 'Level Star Bar', image: 'assets/img/Star Bar.jpg', description: 'Lieu convivial et festif.' },
+      { name: 'Pyramide', image: 'assets/img/Pyramide.jpg', description: 'Endroit branché pour danser.' },
+      { name: 'Alex Night Club', image: 'assets/img/Alex2.jpg', description: 'Déco tropicale, cocktails fruités et ambiance chill.' },
+      { name: 'Daytona', image: 'assets/img/Daytona.jpg', description: 'Bar dansant avec ambiance latino et cocktails exotiques.' },
+      { name: 'Grand Syli', image: 'assets/img/Grand Syli.jpg', description: 'Espace jeune et branché avec soirées étudiantes régulières.' },
+
     ],
     restaurants: [
-      { name: 'Le Gourmet', image: 'assets/img/mont1.jpg', description: 'Cuisine locale et internationale raffinée.' }
+      { name: 'Les Restaurants SLM Labe', image: 'assets/img/Slmm.jpg', description: 'Cuisine propre et savoureuse au cœur de Labé.' },
+      { name: 'Les Restaurants SLM Sonfonia', image: 'assets/img/Sl.jpg', description: 'Repas variés et abordables à Sonfonia.' },
+      { name: 'Le Restaurant Cherry', image: 'assets/img/Cherry1.jpg', description: 'Spécialités locales dans une ambiance moderne.' },
+      { name: 'Restaurant Neminordei', image: 'assets/img/Neminordei.jpg', description: 'Cuisine raffinée dans un cadre chic à Conakry.' },
+
     ]
   };
 

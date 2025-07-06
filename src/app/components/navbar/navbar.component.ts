@@ -25,7 +25,7 @@ export class NavbarComponent {
 
   user = {
     name: 'Oumar Diop',
-    avatarUrl: 'assets/img/Avat.png', // Lien vers une image PNG claire
+    avatarUrl: 'assets/img/Avat.png', 
   };
 
   constructor(private router: Router) {

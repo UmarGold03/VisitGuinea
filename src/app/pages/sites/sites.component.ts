@@ -23,7 +23,7 @@ export class SitesComponent {
   categories: Category[] = [
     {
       name: 'Plages',
-      image: 'assets/img/benares1.jpg',
+      image: 'assets/img/Loos2.jpg',
       description: 'Découvrez les plus belles plages de Guinée, idéales pour la détente.',
       lien: 'plages',
       type: 'Nature'

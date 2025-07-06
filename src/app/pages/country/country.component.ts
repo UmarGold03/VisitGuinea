@@ -44,13 +44,13 @@ export class CountryComponent {
     {
       nom: 'Capitaine Moussa Dadis Camara',
       mandat: '2008 - 2010',
-      photo: 'assets/img/koro.jpg',
+      photo: 'assets/img/Dadis.jpg',
       description: 'Chef de la junte militaire entre 2008 et 2010.',
     },
     {
       nom: 'Sekouba Kouyaté',
       mandat: 'Président du Parlement',
-      photo: 'assets/img/koro.jpg',
+      photo: 'assets/img/Kon.jpg',
       description: 'Personnalité politique importante en Guinée.',
     },
     {

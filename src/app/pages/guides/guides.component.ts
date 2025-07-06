@@ -24,25 +24,25 @@ export class GuidesComponent {
       name: 'Fatoumata Condé',
       region: 'Conakry',
       languages: ['Français', 'Soussou'],
-      image: 'assets/img/Diop.jpg',
+      image: 'assets/img/Ann.png',
     },
     {
       name: 'Ibrahima Diallo',
       region: 'Mamou',
       languages: ['Français', 'Pular'],
-      image: 'assets/img/Diop.jpg',
+      image: 'assets/img/Ann.png',
     },
     {
       name: 'Ousmane Keita',
       region: 'Kankan',
       languages: ['Français', 'Malinké'],
-      image: 'assets/img/Diop.jpg',
+      image: 'assets/img/Ann.png',
     },
     {
-      name: 'Aminata Touré',
+      name: 'Daniel Tamba Millimono',
       region: 'Kindia',
-      languages: ['Français', 'Soussou'],
-      image: 'assets/img/Diop.jpg',
+      languages: ['Français', 'Kissi'],
+      image: 'assets/img/Ann.png',
     },
   ];
 

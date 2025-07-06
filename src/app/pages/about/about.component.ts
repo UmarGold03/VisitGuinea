@@ -26,9 +26,9 @@ import { trigger, style, animate, transition, query, stagger } from '@angular/an
 })
 export class AboutComponent {
  teamMembers = [
-    { name: 'Mamadou Hady', role: 'Développeur Frontend', image: 'Had.jpg' },
-    { name: 'Gassim', role: 'Développeur Backend', image: 'Prefet.jpg' },
-    { name: 'Alseny', role: 'UX/UI Designer', image: 'AC.jpg' },
+    { name: 'Mamadou Hady Balde', role: 'Développeur Frontend', image: 'Haddy.jpg' },
+    { name: 'Algassimou Diallo', role: 'Développeur Backend', image: 'Bk.jpg' },
+    { name: 'Alseny Camara', role: 'UX/UI Designer', image: 'Al.jpg' },
     { name: 'Oumar Diop', role: 'Développeur Frontend', image: 'Diop.jpg' }
   ];
 }
