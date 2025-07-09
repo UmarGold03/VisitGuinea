@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SupabaseService } from '../../../services/supabase.service';
 
 interface Commentaire {
   author: string;
@@ -7,6 +8,7 @@ interface Commentaire {
 }
 
 interface Site {
+  id: string;
   name: string;
   image: string;
   description: string;
@@ -28,390 +30,81 @@ export class SiteDetailComponent implements OnInit{
 
 
   categorie: string = '';
-  site: string = '';
+  siteSlug: string = '';
   siteData: Site | null = null;
   popularComments: Commentaire[] = [];
-
   newComment: Commentaire = {
     author: '',
     content: ''
   };
+  isLoading = true;
+  errorMsg = '';
 
-  allSites: Record<string, Site[]> = {
-    plages: [
-      {
-        name: 'Plage Benares',
-        image: 'assets/img/benares1.jpg',
-        description: 'Une plage paradisiaque à Conakry.',
-        price: '150,000 GNF',
-        localisation: 'https://maps.google.com?q=Conakry+Guinea',
-        comments: [
-          { author: 'Fatou', content: 'Très beau site, j’ai adoré ma visite !' },
-          { author: 'Moussa', content: 'Un endroit à ne pas rater en Guinée !' }
-        ]
-      },
-      {
-        name: 'Takonko Beach',
-        image: 'assets/img/Loos2.jpg',
-        description: 'Une plage paradisiaque à Conakry.',
-        price: '150,000 GNF',
-        localisation: 'https://maps.google.com?q=Conakry+Guinea',
-        comments: [
-          { author: 'Fatou', content: 'Très beau site, j’ai adoré ma visite !' },
-          { author: 'Moussa', content: 'Un endroit à ne pas rater en Guinée !' }
-        ]
-      },
-      {
-        name: 'Plage de Bel-Air',
-        image: 'assets/img/belair2.jpg',
-        description: 'Plage parfaite pour les couchers de soleil.',
-        price: '120,000 GNF',
-        localisation: 'https://maps.google.com?q=BelAir+Guinea',
-        comments: [
-          { author: 'Alpha', content: 'J’y retourne chaque été !' }
-        ]
-      },
-      {
-        name: 'Plage Rogbane',
-        image: 'assets/img/Eau.jpg',
-        description: 'Plage parfaite pour les couchers de soleil.',
-        price: '120,000 GNF',
-        localisation: 'https://maps.google.com?q=BelAir+Guinea',
-        comments: [
-          { author: 'Alpha', content: 'J’y retourne chaque été !' }
-        ]
-      }
-    ],
-    monts: [
-      {
-        name: 'Mont Loura',
-        image: 'assets/img/Lourra.jpg',
-        description: 'Situé à Labé, le Mont Loura offre une vue panoramique exceptionnelle sur le Fouta Djallon. On y découvre la célèbre Dame du Mont Loura, formation rocheuse naturelle qui attire les curieux et randonneurs.',
-        price: '200,000 GNF',
-        localisation: 'https://maps.google.com?q=Mont+Gangan+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
-        ]
-      },
-       {
-        name: 'Chutes Killisi',
-        image: 'assets/img/kilissi.jpg',
-        description: 'Localisées à Kindia, les chutes de Kilissi offrent un paysage naturel magnifique, parfait pour les pique-niques, baignades et moments de détente au cœur de la forêt guinéenne.',
-        price: '200,000 GNF',
-        localisation: 'https://maps.google.com?q=Mont+Gangan+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
-        ]
-      },
-       {
-        name: 'Voile de la mariée',
-        image: 'assets/img/voile4.jpg',
-        description: 'Située à Dubréka, cette cascade tire son nom de la fine brume qui forme un voile rappelant celui d une mariée. Lieu paisible, parfait pour se ressourcer au milieu de la nature..',
-        price: '200,000 GNF',
-        localisation: 'https://maps.google.com?q=Mont+Gangan+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
-        ]
-      },
-       {
-        name: 'Chutes de la Soumba',
-        image: 'assets/img/soumba.jpg',
-        description: 'À quelques kilomètres de Dubréka, la chute de la Soumba est une destination prisée pour sa fraîcheur, son accès facile et ses installations touristiques. Idéal pour les week-ends en famille.',
-        price: '200,000 GNF',
-        localisation: 'https://maps.google.com?q=Mont+Gangan+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
-        ]
-      },
-    ],
-    hotels: [
-      {
-        name: 'Riviera Hotel',
-        image: 'assets/img/Riviera1.jpg',
-        description: 'Hôtel confortable et bien situé.',
-        price: '200,000 GNF',
-        localisation: 'https://maps.google.com?q=Riviera+Hotel+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'La vue est incroyable depuis le sommet.' }
-        ]
-      },
-      {
-        name: 'Radisson Blu',
-        image: 'assets/img/Radisson5.jpg',
-        description: 'Hôtel haut de gamme au cœur de la ville.',
-        price: '300,000 GNF',
-        localisation: 'https://maps.google.com?q=Radisson+Blu+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Super service et confort.' }
-        ]
-      },
-      {
-        name: 'Noom Hotel',
-        image: 'assets/img/Noom.jpg',
-        description: 'Hôtel moderne avec toutes commodités.',
-        price: '180,000 GNF',
-        localisation: 'https://maps.google.com?q=Noom+Hotel+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Très bon rapport qualité/prix.' }
-        ]
-      },
-      {
-        name: 'Onomo Hotel',
-        image: 'assets/img/Onomo8.jpg',
-        description: 'Hôtel apprécié des voyageurs d’affaires.',
-        price: '220,000 GNF',
-        localisation: 'https://maps.google.com?q=Onomo+Hotel+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Excellent emplacement.' }
-        ]
-      },
-      {
-        name: 'Palm Camayenne',
-        image: 'assets/img/PalmCam.jpg',
-        description: 'Hôtel de charme avec vue sur mer.',
-        price: '250,000 GNF',
-        localisation: 'https://maps.google.com?q=Palm+Camayenne+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Ambiance relaxante.' }
-        ]
-      }
-    ],
-    centres: [
-      {
-        name: 'Prima Center',
-        image: 'assets/img/Prima.jpg',
-        description: 'Centre commercial moderne à Conakry.',
-        price: 'Entrée gratuite',
-        localisation: 'https://maps.google.com?q=Prima+Center+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Beaucoup de boutiques intéressantes.' }
-        ]
-      },
-      {
-        name: 'Musée National',
-        image: 'assets/img/Prima.jpg',
-        description: 'Découvrez l’histoire et la culture guinéenne.',
-        price: 'Entrée gratuite',
-        localisation: 'https://maps.google.com?q=Musée+National+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Très enrichissant.' }
-        ]
-      },
-      {
-        name: 'Jardin 2 Octobre',
-        image: 'assets/img/Prima.jpg',
-        description: 'Un espace vert pour se détendre.',
-        price: 'Entrée gratuite',
-        localisation: 'https://maps.google.com?q=Jardin+2+Octobre+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Parfait pour une promenade en famille.' }
-        ]
-      }
-    ],
-    loisirs: [
-      {
-        name: 'Saint Georges',
-        image: 'assets/img/Saint Georges2.jpg',
-        description: 'Club emblématique de Conakry avec musique live et public festif.',
-        price: 'Prix variable',
-        localisation: 'https://maps.google.com?q=Boîte+de+Nuit+XYZ+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Super soirée garantie !' }
-        ],
-         galleryImages: [
-          'assets/img/benares1.jpg',
-          'assets/img/benares1.jpg',
-          'assets/img/benares1.jpg'
-        ],
-      },
-       {
-        name: 'Apollon',
-        image: 'assets/img/Appolon2.jpg',
-        description: 'Soirées dansantes avec DJ locaux et jeux de lumière immersifs.',
-        price: 'Prix variable',
-        localisation: 'https://maps.google.com?q=Boîte+de+Nuit+XYZ+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Super soirée garantie !' }
-        ]
-      },
-       {
-        name: 'Yoma Night Club',
-        image: 'assets/img/Yoma.jpg',
-        description: 'Ambiance chic et exclusive, parfait pour des soirées entre amis',
-        price: 'Prix variable',
-        localisation: 'https://maps.google.com?q=Boîte+de+Nuit+XYZ+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Super soirée garantie !' }
-        ]
-      },
-       {
-        name: 'Level Lounge',
-        image: 'assets/img/mont1.jpg',
-        description: 'Espace cosy à ambiance soft, idéal pour chill et cocktails.',
-        price: 'Prix variable',
-        localisation: 'https://maps.google.com?q=Boîte+de+Nuit+XYZ+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Super soirée garantie !' }
-        ]
-      },
-    ],
-    religieux: [
-      {
-        name: 'Mosquée Faycal',
-        image: 'assets/img/Faycal2.jpg',
-        description: 'Mosquée emblématique à Conakry.',
-        price: 'Entrée gratuite',
-        localisation: 'https://maps.google.com?q=Mosquée+Faycal+Guinea',
-        galleryImages: [
-          'assets/img/benares1.jpg',
-          'assets/img/benares1.jpg',
-          'assets/img/benares1.jpg'
-        ],
-        comments: [
-          { author: 'Mariama', content: 'Lieu de paix et de recueillement.' }
-        ]
-      },
-      {
-        name: 'Mosquée Turc',
-        image: 'assets/img/MosqueTurc.jpg',
-        description: 'Architecture impressionnante.',
-        price: 'Entrée gratuite',
-        localisation: 'https://maps.google.com?q=Mosquée+Turc+Guinea',
-        galleryImages: [
-          'assets/img/benares1.jpg',
-          'assets/img/benares1.jpg',
-          'assets/img/benares1.jpg'
-        ],
-        comments: [
-          { author: 'Mariama', content: 'Très bel édifice.' }
-        ]
-      },
-      {
-        name: 'Cathédrale Sainte Marie',
-        image: 'assets/img/Cathedrale1.jpg',
-        description: 'Cathédrale historique de Conakry.',
-        price: 'Entrée gratuite',
-        localisation: 'https://maps.google.com?q=Cathédrale+Sainte+Marie+Guinea',
-        galleryImages: [
-          'assets/img/benares1.jpg',
-          'assets/img/benares1.jpg',
-          'assets/img/benares1.jpg'
-        ],
-        comments: [
-          { author: 'Mariama', content: 'Architecture magnifique.' }
-        ]
-      }
-    ],
-    iles: [
-      {
-        name: 'Îles Loos',
-        image: 'assets/img/Loos2.jpg',
-        description: 'Archipel paradisiaque proche de Conakry.',
-        price: 'Visite à partir de 100,000 GNF',
-        localisation: 'https://maps.google.com?q=Îles+Loos+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Un paradis pour les amoureux de la nature.' }
-        ]
-      },
-      {
-        name: 'Lac Samaya',
-        image: 'assets/img/samayalac1.jpg',
-        description: 'Lac paisible entouré de nature.',
-        price: 'Entrée gratuite',
-        localisation: 'https://maps.google.com?q=Lac+Samaya+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Endroit parfait pour la pêche.' }
-        ]
-      },
-      {
-        name: 'Îles Room',
-        image: 'assets/img/VU.jpg',
-        description: 'Un lieu secret pour les aventuriers.',
-        price: 'Visite privée',
-        localisation: 'https://maps.google.com?q=Îles+Room+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Très calme et isolé.' }
-        ]
-      },
-      {
-        name: 'Îles Tamara',
-        image: 'assets/img/tamara.jpg',
-        description: 'Île magnifique avec plages de sable blanc.',
-        price: 'Visite guidée recommandée',
-        localisation: 'https://maps.google.com?q=Îles+Tamara+Guinea',
-        comments: [
-          { author: 'Mariama', content: 'Superbe pour une escapade romantique.' }
-        ]
-      }
-    ],
-    restaurants: [
-      {
-        name: 'Les Restaurants SLM Labe',
-        image: 'assets/img/Slmmm.jpg',
-        description: 'Le Restaurant SLM à Labé est un point de repère culinaire dans la région du Fouta. Il offre des plats variés, une hygiène remarquable, et un excellent accueil. Très prisé pour les déjeuners et les dîners traditionnels.',
-        price: '100,000 GNF',
-        localisation: 'https://maps.google.com?q=Soumba+Falls+Guinea',
-        comments: [
-          { author: 'Amadou', content: 'Magnifique lieu de détente !' }
-        ]
-      },
-      {
-        name: 'Les Restaurants SLM Sonfonia',
-        image: 'assets/img/Slm.jpg',
-        description: 'Implanté à Sonfonia, ce restaurant est connu pour sa constance dans la qualité. Il propose une large gamme de plats africains et internationaux, dans une atmosphère simple et conviviale, idéale pour les étudiants et les familles.',
-        price: '100,000 GNF',
-        localisation: 'https://maps.google.com?q=Soumba+Falls+Guinea',
-        comments: [
-          { author: 'Amadou', content: 'Magnifique lieu de détente !' }
-        ]
-      },
-      {
-        name: 'Le Restaurant Cherry',
-        image: 'assets/img/Cher.jpg',
-        description: 'Situé dans la zone de Kipé, le Restaurant Cherry est connu pour ses spécialités guinéennes et son ambiance chaleureuse. Le décor moderne et le bon rapport qualité-prix en font un lieu apprécié des jeunes et des familles.',
-        price: '100,000 GNF',
-        localisation: 'https://maps.google.com?q=Soumba+Falls+Guinea',
-        comments: [
-          { author: 'Amadou', content: 'Magnifique lieu de détente !' }
-        ]
-      },
-       {
-        name: 'Restaurant Neminordei',
-        image: 'assets/img/Neminordei.jpg',
-        description: 'Le restaurant Neminordei est un établissement réputé de Conakry offrant un cadre élégant et convivial. Il propose une cuisine africaine et européenne raffinée, avec un service professionnel. Idéal pour les repas en famille, d’affaires ou en couple.',
-        price: '100,000 GNF',
-        localisation: 'https://maps.google.com?q=Soumba+Falls+Guinea',
-        comments: [
-          { author: 'Amadou', content: 'Magnifique lieu de détente !' }
-        ]
-      }
-    ]
-  };
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private supabaseService: SupabaseService
+  ) {}
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
-
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.categorie = this.route.snapshot.paramMap.get('categorie') || '';
-    this.site = this.route.snapshot.paramMap.get('site') || '';
+    this.siteSlug = decodeURIComponent(this.route.snapshot.paramMap.get('site') || '');
 
-    const categorySites = this.allSites[this.categorie];
-    if (categorySites) {
-      this.siteData = categorySites.find(
-        (s: Site) => s.name.toLowerCase() === this.site.toLowerCase()
-      ) || null;
+    try {
+      // Étape 1 : Récupération de toutes les catégories
+      const categories = await this.supabaseService.getCategories();
+      const matchedCategory = categories.find(cat =>
+        cat.name.toLowerCase().replace(/\s+/g, '-') === this.categorie
+      );
+
+      if (!matchedCategory) {
+        this.errorMsg = 'Catégorie introuvable.';
+        this.router.navigate(['/categories']);
+        return;
+      }
+
+      // Étape 2 : Récupérer tous les sites
+      const allSites = await this.supabaseService.getSites();
+
+      // Étape 3 : Trouver le site spécifique
+      const found = allSites.find(site =>
+        site.category_id === matchedCategory.id &&
+        site.name.toLowerCase() === this.siteSlug.toLowerCase()
+      );
+
+      if (!found) {
+        this.errorMsg = 'Site introuvable.';
+        this.router.navigate(['/categories', this.categorie]);
+        return;
+      }
+
+      // Étape 4 : Récupérer la galerie du site (optionnelle)
+      const gallery = await this.supabaseService.getGalleryBySiteId(found.id);
+
+      this.siteData = {
+        id: found.id,
+        name: found.name,
+        image: found.image,
+        description: found.description,
+        price: found.price || 'Non spécifié',
+        localisation: found.location || '#',
+        comments: [], // à connecter plus tard avec Supabase table "reviews"
+        galleryImages: gallery
+      };
+
+      // Étape 5 : Charger des commentaires simulés (à remplacer plus tard)
+      this.popularComments = [
+        { author: 'Fatou', content: 'Lieu magnifique !' },
+        { author: 'Moussa', content: 'Très belle expérience.' }
+      ];
+
+    } catch (err) {
+      console.error('Erreur chargement site détail :', err);
+      this.errorMsg = 'Erreur lors du chargement du site.';
+    } finally {
+      this.isLoading = false;
+      window.scrollTo(0, 0);
     }
-
-    if (!this.siteData) {
-      this.router.navigate(['/categories']);
-      return;
-    }
-
-    this.popularComments = [...(this.siteData.comments || [])];
-    window.scrollTo(0, 0);
-  }
-
-  openLink(url: string): void {
-    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   goBack(): void {
@@ -423,18 +116,13 @@ export class SiteDetailComponent implements OnInit{
     const contentTrimmed = this.newComment.content.trim();
 
     if (authorTrimmed && contentTrimmed) {
-      this.popularComments.unshift({
-        author: authorTrimmed,
-        content: contentTrimmed
-      });
-
+      this.popularComments.unshift({ author: authorTrimmed, content: contentTrimmed });
       this.newComment = { author: '', content: '' };
     }
   }
 
   goToReservation(): void {
     if (!this.siteData) return;
-
     this.router.navigate(['/reservation'], {
       queryParams: {
         nom: this.siteData.name,

@@ -1,6 +1,5 @@
 <div class="container">
-
-  <!-- Header immersif avec titre, description, recherche -->
+  <!-- Header -->
   <section class="header-banner">
     <div class="overlay">
       <h2>{{ getCategorieTitre() }}</h2>
@@ -13,8 +12,18 @@
     </div>
   </section>
 
-  <!-- Grille de cartes -->
-  <div class="categories-container">
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="text-center">
+    <p>Chargement des sites...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="text-danger text-center">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Grille -->
+  <div class="categories-container" *ngIf="!isLoading && !error">
     <div
       class="card"
       *ngFor="let site of filteredSites()"
@@ -22,7 +31,7 @@
       role="button"
       [attr.aria-label]="'Explorer ' + site.name"
     >
-      <img [src]="site.image" [alt]="site.name" class="card-image" loading="lazy" />
+      <img [src]="site.imageUrl || 'assets/img/default-site.jpg'" [alt]="site.name" class="card-image" loading="lazy" />
       <div class="card-content">
         <h3>{{ site.name }}</h3>
         <p>{{ site.description }}</p>
@@ -37,5 +46,4 @@
   <div class="back-btn">
     <button class="btn-retour" (click)="goBack()">← Retour</button>
   </div>
-
 </div>

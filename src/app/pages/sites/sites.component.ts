@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
+import { SupabaseService } from '../../services/supabase.service';
+import { isPlatformBrowser } from '@angular/common';
+
 
 interface Category {
+  id: string;
   name: string;
-  image: string;
   description: string;
-  lien: string;
   type: string;
+  image: string; // URL complète
+  lien: string;  // name transformé pour route
 }
 
 @Component({
@@ -16,73 +20,31 @@ interface Category {
 })
 export class SitesComponent {
 
+   categories: Category[] = [];
   searchQuery = '';
   sortOrder: 'asc' | 'desc' = 'asc';
   selectedType = '';
+  isLoading = true;
+  errorMsg = '';
 
-  categories: Category[] = [
-    {
-      name: 'Plages',
-      image: 'assets/img/Loos2.jpg',
-      description: 'Découvrez les plus belles plages de Guinée, idéales pour la détente.',
-      lien: 'plages',
-      type: 'Nature'
-    },
-    {
-      name: 'Hôtels',
-      image: 'assets/img/Noom1.jpg',
-      description: 'Séjournez dans les meilleurs hôtels avec confort.',
-      lien: 'hotels',
-      type: 'Hébergement'
-    },
-    {
-      name: 'Monts et Chutes',
-      image: 'assets/img/Loos10.jpg',
-      description: 'Explorez les monts majestueux et les cascades.',
-      lien: 'monts',
-      type: 'Nature'
-    },
-    {
-      name: 'Centres Culturels',
-      image: 'assets/img/Jardin5.jpg',
-      description: 'Immergez-vous dans la richesse culturelle de la Guinée.',
-      lien: 'centres',
-      type: 'Culture'
-    },
-    {
-      name: 'Îles & Parcs Naturels',
-      image: 'assets/img/Loos8.jpg',
-      description: 'Découvrez les îles paisibles et les réserves naturelles.',
-      lien: 'iles',
-      type: 'Nature'
-    },
-    {
-      name: 'Lieux Religieux & Historiques',
-      image: 'assets/img/Faycal.jpg',
-      description: 'Visitez les sites historiques et religieux du pays.',
-      lien: 'religieux',
-      type: 'Culture'
-    },
-    {
-      name: 'Loisirs et Sorties',
-      image: 'assets/img/Onomo.jpg',
-      description: 'Boîtes de nuit, bars, espaces de détente.',
-      lien: 'loisirs',
-      type: 'Loisirs'
-    },
-    {
-      name: 'Restaurants & Gastronomie',
-      image: 'assets/img/Onomo10.jpg',
-      description: 'Savourez la gastronomie guinéenne.',
-      lien: 'restaurants',
-      type: 'Gastronomie'
+  constructor(
+    private supabaseService: SupabaseService,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  async ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    try {
+      const data = await this.supabaseService.getCategories();
+      this.categories = data;
+    } catch (err) {
+      console.error('Erreur chargement des catégories', err);
+      this.errorMsg = 'Impossible de charger les catégories.';
+    } finally {
+      this.isLoading = false;
     }
-  ];
-
-  constructor(private router: Router) {}
-
-  goToCategory(category: string) {
-    this.router.navigate(['/categories', category]);
   }
 
   uniqueTypes(): string[] {
@@ -99,5 +61,9 @@ export class SitesComponent {
     return this.sortOrder === 'asc'
       ? result.sort((a, b) => a.name.localeCompare(b.name))
       : result.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  goToCategory(slug: string) {
+    this.router.navigate(['/categories', slug]);
   }
 }

@@ -34,6 +34,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -64,6 +65,8 @@ import { ManageReservationsComponent } from './dashboard/manage-reservations/man
 import { SimandouComponent } from './pages/simandou/simandou.component';
 import { GalleryComponent } from './pages/sites/gallery/gallery.component';
 import { MerciComponent } from './merci/merci.component';
+import { SiteListComponent } from './components/site-list/site-list.component';
+
 
 
 
@@ -100,6 +103,7 @@ import { MerciComponent } from './merci/merci.component';
     SimandouComponent,
     GalleryComponent,
     MerciComponent,
+    SiteListComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,7 +111,7 @@ import { MerciComponent } from './merci/merci.component';
     MatButtonModule, MatToolbarModule, 
     MatLabel, FormsModule, MatSelectModule, MatTableModule,
      MatInputModule, MatGridListModule, MatTabsModule, MatSnackBarModule,
-    MatIconModule, MatMenuModule,
+    MatIconModule, MatMenuModule, MatProgressSpinnerModule,
      MatSlideToggleModule, MatCardModule,
       MatFormFieldModule, MatListModule ,MatSidenavModule, 
       MatDividerModule, MatSidenavModule,   MatDatepickerModule,

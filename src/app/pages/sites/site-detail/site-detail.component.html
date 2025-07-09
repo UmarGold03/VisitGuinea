@@ -1,4 +1,12 @@
-<div class="container" *ngIf="siteData">
+<!-- src/app/pages/site-detail/site-detail.component.html -->
+
+<!-- Spinner de chargement -->
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner diameter="50" color="primary"></mat-spinner>
+</div>
+
+<!-- Contenu du site -->
+<div class="container" *ngIf="!isLoading && siteData">
   <mat-card class="detail-card animate-fade-in">
     <img mat-card-image [src]="siteData.image" [alt]="siteData.name" />
     <mat-card-title>{{ siteData.name }}</mat-card-title>
@@ -52,21 +60,26 @@
           </button>
         </form>
       </div>
+    </div>
 
-      <!-- Galerie intégrée -->
-      <div class="gallery-section" *ngIf="siteData?.galleryImages?.length">
-        <h3>Galerie photos</h3>
-        <div class="gallery-cards">
-          <mat-card *ngFor="let img of siteData.galleryImages" class="gallery-card">
-            <img mat-card-image [src]="img" [alt]="siteData.name" />
-            <mat-card-actions>
-              <button mat-button color="primary" (click)="downloadImage(img)" type="button">
-                Télécharger
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
+    <!-- Galerie -->
+    <div class="gallery-section" *ngIf="siteData?.galleryImages?.length">
+      <h3>Galerie photos</h3>
+      <div class="gallery-cards">
+        <mat-card *ngFor="let img of siteData.galleryImages" class="gallery-card">
+          <img mat-card-image [src]="img" [alt]="siteData.name" />
+          <mat-card-actions>
+            <button mat-button color="primary" (click)="downloadImage(img)" type="button">
+              Télécharger
+            </button>
+          </mat-card-actions>
+        </mat-card>
       </div>
     </div>
   </mat-card>
+</div>
+
+<!-- Message erreur si site introuvable -->
+<div class="container text-center text-danger" *ngIf="!isLoading && !siteData">
+  <p>Site introuvable ou non disponible.</p>
 </div>

@@ -1,1 +1,5 @@
-<p>reviews works!</p>
+<div *ngFor="let site of sites">
+  <h2>{{ site.name }}</h2>
+  <img [src]="site.image_url" width="200" />
+  <p>{{ site.description }}</p>
+</div>

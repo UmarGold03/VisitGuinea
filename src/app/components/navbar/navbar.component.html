@@ -55,7 +55,7 @@
   <button mat-button routerLink="/about" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="À Propos">À Propos</button>
   <button mat-button routerLink="/country" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="La Guinée">La Guinée</button>
   <button mat-button routerLink="/dashboard" routerLinkActive="router-link-active" (click)="closeMenu()" tabindex="0" aria-label="Tableau de Bord">Tableau de Bord</button>
-
+  
   <ng-container *ngIf="isConnected; else loginMobile">
     <button mat-button routerLink="/profil" (click)="closeMenu()" tabindex="0" aria-label="Mon profil">Mon profil</button>
     <button mat-button (click)="logout()" tabindex="0" aria-label="Déconnexion">Déconnexion</button>

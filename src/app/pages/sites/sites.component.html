@@ -1,4 +1,6 @@
-<section class="search-section container mt-4 mb-3">
+<!-- src/app/pages/sites/sites.component.html -->
+
+<section class="search-section container mt-4 mb-3" *ngIf="!isLoading">
   <div class="text-center mb-4">
     <h2>Rechercher une Destination</h2>
     <p>Explorez les merveilles de la Guinée selon vos envies</p>
@@ -30,7 +32,18 @@
   </div>
 </section>
 
-<section class="categories-container">
+<!-- 🔁 Spinner -->
+<div class="container text-center" *ngIf="isLoading">
+  <mat-spinner diameter="50" color="primary"></mat-spinner>
+</div>
+
+<!-- ❌ Erreur -->
+<div class="container text-center text-danger" *ngIf="errorMsg && !isLoading">
+  {{ errorMsg }}
+</div>
+
+<!-- ✅ Liste des catégories -->
+<section class="categories-container" *ngIf="!isLoading && filteredCategories().length">
   <div class="card" *ngFor="let cat of filteredCategories()" (click)="goToCategory(cat.lien)">
     <img [src]="cat.image" [alt]="cat.name" class="card-image" loading="lazy" />
     <div class="card-content">
@@ -40,3 +53,8 @@
     </div>
   </div>
 </section>
+
+<!-- Aucune catégorie -->
+<div class="container text-center" *ngIf="!isLoading && !filteredCategories().length">
+  <p>Aucune catégorie ne correspond à votre recherche.</p>
+</div>

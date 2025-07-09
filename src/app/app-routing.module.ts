@@ -26,6 +26,7 @@ import { SimandouComponent } from './pages/simandou/simandou.component';
 import { CountryComponent } from './pages/country/country.component';
 import { GalleryComponent } from './pages/sites/gallery/gallery.component';
 import { MerciComponent } from './merci/merci.component';
+import { SiteListComponent } from './components/site-list/site-list.component';
 
 const routes: Routes = [
    { path: 'navbar', component: NavbarComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
    { path: 'simandou', component: SimandouComponent },
      { path: 'merci', component: MerciComponent },
    { path: 'country', component: CountryComponent },
+    { path: 'site-list', component: SiteListComponent },
    { path: 'categories/:categorie/:site/gallery', component: GalleryComponent },
 
 
