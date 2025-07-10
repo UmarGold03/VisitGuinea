@@ -31,7 +31,7 @@
       role="button"
       [attr.aria-label]="'Explorer ' + site.name"
     >
-      <img [src]="site.imageUrl || 'assets/img/default-site.jpg'" [alt]="site.name" class="card-image" loading="lazy" />
+      <img [src]="site.image || 'assets/img/default-site.jpg'" [alt]="site.name" class="card-image" loading="lazy" />
       <div class="card-content">
         <h3>{{ site.name }}</h3>
         <p>{{ site.description }}</p>
